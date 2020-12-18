@@ -9,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="shortcut icon" href="images/favicon.png">
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -19,7 +19,6 @@
 
         <!-- Custom  sCss -->
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-
     </head>
 
     <body>
@@ -29,8 +28,8 @@
             <div class="container-fluid">
                 <!-- LOGO -->
                 <a class="logo text-uppercase" href="index.html">
-                    <img src="images/clients/perlis.png" alt="" class="logo-light" height="50" />
-                    <img src="images/clients/perlis.png" alt="" class="logo-dark" height="50" />
+                    <img src="images/logo.png" alt="" class="logo-light" height="50" />
+                    <img src="images/logo.png" alt="" class="logo-dark" height="50" />
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,19 +60,43 @@
             <div class="home-center">
                 <div class="home-desc-center">
                     <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6">
-                                <div class="home-title mo-mb-20">
-                                    <h1 class="mb-4 text-white">Pembayaran 24/7</h1>
-                                    <p class="text-white home-desc mb-5">Memudahkan pembayaran cukai, kompaun, sewa, wakaf, zakat, lesen dan pinjaman anda di negeri Perlis.</p>
+                        <div id="carouselExampleCaption" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-6">
+                                            <div class="home-title mo-mb-20">
+                                                <h1 class="mb-4 text-white">Pembayaran 24/7</h1>
+                                                <p class="text-white home-desc mb-5">Memudahkan pembayaran cukai, kompaun, sewa, wakaf, zakat, lesen dan pinjaman anda di semua agensi, kerajaan dan pihak berkuasa tempatan Kerajaan Negeri Perlis.</p>
+                                                <a href="#agency" class="btn btn-primary">Senarai Pembayaran</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="home-img position-relative">
+                                                <img src="images/clients/online-payment.png" alt="" class="home-first-img">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="home-img position-relative">
-                                    <img src="images/clients/online-payment.png" alt="" class="home-first-img">
+                                <div class="carousel-item">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-6">
+                                            <div class="home-title mo-mb-20">
+                                                <h1 class="mb-4 text-white">Gerbang pembayaran</h1>
+                                                <p class="text-white home-desc mb-5">Menyediakan kemudahan pembayaran atas talian bagi agensi, jabatan dan pihak berkuasa tempatan KerajaanNegeri Perlis.</p>
+                                                <a href="#agency" class="btn btn-primary">Senarai Jabatan/Agensi</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="home-img position-relative">
+                                                <img src="images/clients/online-payment-02.png" alt="" class="home-first-img">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- end row -->
                     </div>
                     <!-- end container-fluid -->
@@ -94,7 +117,7 @@
                         </div>
                         <div class="col-md-9">
                             <div class="client-images">
-                                <p>FPX is a payment gateway that allows you to make real-time online payment using your current or savings account. FPX service is available almost 24 hours 7 days a week. All you need is an internet banking account with any of FPX’s participating banks.</p>
+                                <p>FPX adalah gerbang pembayaran yang membolehkan anda membuat pembayaran dalam talian masa nyata menggunakan akaun semasa atau simpanan anda. Perkhidmatan FPX tersedia hampir 24 jam 7 hari seminggu. Yang anda perlukan hanyalah akaun perbankan internet dengan mana-mana bank FPX yang mengambil bahagian.</p>
                             </div>
                         </div>
                     </div> <!-- end row -->
@@ -118,7 +141,6 @@
                     <div class="col-lg-6">
                         <div class="text-center mb-4 pb-1">
                             <h3>Kaedah Pembayaran</h3>
-                            <p class="text-muted">The clean and well commented code allows easy customization of the theme.It's designed for describing your app, agency or business.</p>
                         </div>
                     </div>
                 </div>
@@ -144,8 +166,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="text-center mb-4">
-                            <h3 class="text-white">Agensi</h3>
-                            <p class="text-white">Senarai pembayaran yang boleh dibuat</p>
+                            <h3 class="text-white">Perkhidmatan Pembayaran</h3>
+                            <p class="text-white">Senarai jabatan/agensi kerajaan negeri</p>
                         </div>
                     </div>
                 </div>
@@ -153,79 +175,71 @@
 
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
-                        <div class="row align-items-center">
+                        <div class="row">
                             <div class="col-lg-6">
-                                <div class="pricing-plan bg-white p-4 mt-4">
-                                    <div class="pricing-header text-center">
-                                        <h5 class="plan-title text-uppercase mb-4">Majlis Perbandaran Kangar</h5>
-                                        <div class="feature-img">
-                                            <img src="images/clients/mpk.jpg" alt="" class="img-fluid mx-auto d-block">
-                                        </div>
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <h5 class="text-uppercase">Jabatan Negeri</h5>
                                     </div>
-                                    <ul class="list-unstyled pricing-list mt-4">
-                                        <li>
-                                            <i class="mdi mdi-album"></i>
-                                            <p>Cukai Taksiran</p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-lifebuoy"></i>
-                                            <p>Lesen<p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-update"></i>
-                                            <p>Sewa</p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-history"></i>
-                                            <p>Kompaun</p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-alarm-check"></i>
-                                            <p>Lain-lain</p>
-                                        </li>
-                                    </ul>
-                                    <div class="text-center mt-5">
-                                        <a href="#" class="btn btn-danger">Bayar</a>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>PEJABAT PENASIHAT UNDANG-UNDANG NEGERI PERLIS</li>
+                                            <li>PEJABAT PERBENDAHARAAN NEGERI PERLIS</li>
+                                            <li>JABATAN MUFTI NEGERI PERLIS</li>
+                                            <li>JABATAN KEHAKIMAN SYARIAH NEGERI PERLIS</li>
+                                            <li>JABATAN KERJA RAYA NEGERI PERLIS</li>
+                                            <li>JABATAN TANAH DAN GALIAN NEGERI PERLIS</li>
+                                            <li>JABATAN PENGAIRAN DAN SALIRAN NEGERI PERLIS</li>
+                                            <li>JABATAN HAL EHWAL AGAMA ISLAM NEGERI PERLIS</li>
+                                            <li>JABATAN PERKHIDMATAN VETERINAR NEGERI PERLIS</li>
+                                            <li>JABATAN PERTANIAN NEGERI PERLIS</li>
+                                            <li>PLANMALAYSIA@PERLIS (JABATAN PERANCANG BANDAR DAN DESA)</li>
+                                            <li>JABATAN PERHUTANAN NEGERI PERLIS</li>
+                                            <li>JABATAN KEBAJIKAN MASYARAKAT NEGERI PERLIS</li>
+                                            <li>PEJABAT DYMM TUANKU RAJA PERLIS</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-center">
+                                            <a href="jabatan.html" class="btn btn-success">Senarai Perkhidmatan</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div> <!-- end col -->
 
                             <div class="col-lg-6">
-                                <div class="pricing-plan bg-white p-4 mt-4">
-                                    <div class="pricing-header text-center">
-                                        <h5 class="plan-title text-uppercase mb-4">Malis Agama Islam Perlis</h5>
-                                        <div class="feature-img">
-                                            <img src="images/clients/maip.png" alt="" class="img-fluid mx-auto d-block">
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <h5 class="text-uppercase">Badan Berkanun</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>PERBADANAN KEMAJUAN EKONOMI NEGERI PERLIS</li>
+                                            <li>MAJLIS AGAMA ISLAM & ADAT ISTIADAT MELAYU PERLIS</li>
+                                            <li>PERBADANAN PERPUSTAKAAN AWAM NEGERI PERLIS</li>
+                                            <li>YAYASAN ISLAM PERLIS</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-center">
+                                            <a href="badan-berkanun.html" class="btn btn-success">Senarai Perkhidmatan</a>
                                         </div>
                                     </div>
-                                    <ul class="list-unstyled pricing-list mt-4">
-                                        <li>
-                                            <i class="mdi mdi-album"></i>
-                                            <p>Wakaf Tunai</p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-lifebuoy"></i>
-                                            <p>Sewaan<p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-update"></i>
-                                            <p>Fidyah</p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-history"></i>
-                                            <p>Tabung T-BAZ</p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-alarm-check"></i>
-                                            <p>Kafarah</p>
-                                        </li>
-                                        <li>
-                                            <i class="mdi mdi-alarm-check"></i>
-                                            <p>Zakat</p>
-                                        </li>
-                                    </ul>
-                                    <div class="text-center mt-5">
-                                        <a href="#" class="btn shadow btn-light">Bayar</a>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <h5 class="text-uppercase">Pihak Berkuasa Tempatan</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>MAJLIS PERBANDARAN KANGAR</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-center">
+                                            <a href="pbt.html" class="btn btn-success">Senarai Perkhidmatan</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div> <!-- end col -->
@@ -249,7 +263,7 @@
                     <div class="col-lg-6">
                         <div class="text-center mb-5">
                             <h3>Soalan Lazim</h3>
-                            <p class="text-muted">At solmen va esser necessi far uniform grammatica.</p>
+                            <p class="text-muted">Soalan lazim berkaitan pembayaran atas talian.</p>
                         </div>
                     </div>
                 </div>
@@ -259,21 +273,21 @@
                     <div class="col-lg-5 offset-lg-1">
                         <!-- Question/Answer -->
                         <div>
-                            <div class="faq-question-q-box">Q.</div>
+                            <div class="faq-question-q-box">01</div>
                             <h4 class="faq-question">What is Lorem Ipsum?</h4>
                             <p class="faq-answer mb-4 pb-1 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
                         </div>
 
                         <!-- Question/Answer -->
                         <div>
-                            <div class="faq-question-q-box">Q.</div>
+                            <div class="faq-question-q-box">02</div>
                             <h4 class="faq-question">Why use Lorem Ipsum?</h4>
                             <p class="faq-answer mb-4 pb-1 text-muted">Lorem ipsum dolor sit amet, in mea nonumes dissentias dissentiunt, pro te solet oratio iriure. Cu sit consetetur moderatius intellegam, ius decore accusamus te. Ne primis suavitate disputando nam. Mutat convenirete.</p>
                         </div>
 
                         <!-- Question/Answer -->
                         <div>
-                            <div class="faq-question-q-box">Q.</div>
+                            <div class="faq-question-q-box">03</div>
                             <h4 class="faq-question">How many variations exist?</h4>
                             <p class="faq-answer mb-4 pb-1 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
                         </div>
@@ -284,21 +298,21 @@
                     <div class="col-lg-5">
                         <!-- Question/Answer -->
                         <div>
-                            <div class="faq-question-q-box">Q.</div>
+                            <div class="faq-question-q-box">04</div>
                             <h4 class="faq-question">Is safe use Lorem Ipsum?</h4>
                             <p class="faq-answer mb-4 pb-1 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
                         </div>
 
                         <!-- Question/Answer -->
                         <div>
-                            <div class="faq-question-q-box">Q.</div>
+                            <div class="faq-question-q-box">05</div>
                             <h4 class="faq-question">When can be used?</h4>
                             <p class="faq-answer mb-4 pb-1 text-muted">Lorem ipsum dolor sit amet, in mea nonumes dissentias dissentiunt, pro te solet oratio iriure. Cu sit consetetur moderatius intellegam, ius decore accusamus te. Ne primis suavitate disputando nam. Mutat convenirete.</p>
                         </div>
 
                         <!-- Question/Answer -->
                         <div>
-                            <div class="faq-question-q-box">Q.</div>
+                            <div class="faq-question-q-box">06</div>
                             <h4 class="faq-question">License &amp; Copyright</h4>
                             <p class="faq-answer mb-4 pb-1 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
                         </div>
@@ -328,43 +342,55 @@
                 </div>
                 <!-- end row -->
                 <div class="row mb-4">
-                    <div class="col-lg-4">
-                        <div class="contact-content text-center mt-4">
-                            <div class="contact-icon mb-2">
-                                <i class="mdi mdi-email-outline text-info h2"></i>
-                            </div>
-                            <div class="contact-details text-white">
-                                <h5 class="text-white">E-mail</h5>
-                                <p class="text-white">mpkpls@mpkangar.gov.my</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-lg-4">
+                    
+                    <div class="col-lg-5">
                         <div class="contact-content text-center mt-4">
                             <div class="contact-icon mb-2">
                                 <i class="mdi mdi-map-marker text-info h2"></i>
                             </div>
                             <div class="contact-details">
                                 <h5 class="text-white">Alamat</h5>
-                                <p class="text-white">MAJLIS PERBANDARAN KANGAR, 192, Persiaran Jubli Emas, 01000 Kangar, Perlis Indera Kayangan</p>
+                                <p class="text-white">Pejabat Perbendaharaan Negeri Perlis, Bangunan Jam Besar, Kompleks Ibu Pejabat Kerajaan Negeri, 01000 Kangar, Perlis.</p>
                             </div>
                         </div>
                     </div>
                     <!-- end col -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
+                        <div class="contact-content text-center mt-4">
+                            <div class="contact-icon mb-2">
+                                <i class="mdi mdi-email-outline text-info h2"></i>
+                            </div>
+                            <div class="contact-details text-white">
+                                <h5 class="text-white">E-mail</h5>
+                                <p class="text-white">bendahari@perlis.gov.my</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-lg-2">
                         <div class="contact-content text-center mt-4">
                             <div class="contact-icon mb-2">
                                 <i class="mdi mdi-cellphone-iphone text-info h2"></i>
                             </div>
                             <div class="contact-details">
                                 <h5 class="text-white">Telefon</h5>
-                                <p class="text-white">04-9762188</p>
+                                <p class="text-white">04-9731801</p>
                             </div>
                         </div>
                     </div>
                     <!-- end col -->
-                    
+                    <div class="col-lg-2">
+                        <div class="contact-content text-center mt-4">
+                            <div class="contact-icon mb-2">
+                                <i class="mdi mdi-cellphone-iphone text-info h2"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5 class="text-white">Faks</h5>
+                                <p class="text-white">04-9765189</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
                 </div>
                 <!-- end row -->
 
@@ -436,13 +462,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="float-left pull-none">
-                            <p class="text-white">&copy; 2020 MAJLIS PERBANDARAN KANGAR</p>
+                            <p class="text-white">&copy; 2020 Kerajaan Negeri Perlis Indera Kayangan</p>
                         </div>
                         <div class="float-right pull-none">
                             <ul class="list-inline social-links">
-                                <li class="list-inline-item text-white">
-                                    Social :
-                                </li>
                                 <li class="list-inline-item"><a href="#"><i class="mdi mdi-facebook"></i></a></li>
                                 <li class="list-inline-item"><a href="#"><i class="mdi mdi-twitter"></i></a></li>
                                 <li class="list-inline-item"><a href="#"><i class="mdi mdi-instagram"></i></a></li>
