@@ -1,114 +1,89 @@
 <?php
-/**
- * GitLab Web Hook
- * See https://gitlab.com/kpobococ/gitlab-webhook
+
+/*
+ * Endpoint for Github Webhook URLs
  *
- * This script should be placed within the web root of your desired deploy
- * location. The GitLab repository should then be configured to call it for the
- * "Push events" trigger via the Web Hooks settings page.
+ * see: https://help.github.com/articles/post-receive-hooks
  *
- * Each time this script is called, it executes a hook shell script and logs all
- * output to the log file.
- *
- * This hook uses php's exec() function, so make sure it can be executed.
- * See http://php.net/manual/function.exec.php for more info
  */
-// CONFIGURATION
-// =============
-/* Hook script location. The hook script is a simple shell script that executes
- * the actual git push. Make sure the script is either outside the web root or
- * inaccessible from the web
- *
- * This setting is REQUIRED
- */
-$hookfile = '/root/git.sh';
-/* Log file location. Log file has both this script's and shell script's output.
- * Make sure PHP can write to the location of the log file, otherwise no log
- * will be created!
- *
- * This setting is REQUIRED
- */
-$logfile = '/root/git.log';
-/* Hook password. If set, this password should be passed as a GET parameter to
- * this script on every call, otherwise the hook won't be executed.
- *
- * This setting is RECOMMENDED
- */
-$password = '[aiqonssp]';
-/* Ref name. This limits the hook to only execute the shell script if a push
- * event was generated for a certain ref (most commonly - a master branch).
- *
- * Can also be an array of refs:
- *
- *     $ref = array('refs/heads/master', 'refs/heads/develop');
- *
- * This setting does not support the actual refspec, so the refs should match
- * exactly.
- *
- * See http://git-scm.com/book/en/Git-Internals-The-Refspec for more info on
- * the subject of Refspec
- *
- * This setting is OPTIONAL
- */
-$token = 'CS93457wr_vh42MqFehX';
-$ref = 'refs/heads/master';
-// THE ACTUAL SCRIPT
-// -----------------
-// You shouldn't edit beyond this point,
-// unless you know what you're doing
-// =====================================
-function log_append($message, $time = null)
-{
-    global $logfile;
-    $time = $time === null ? time() : $time;
-    $date = date('Y-m-d H:i:s');
-    $pre  = $date . ' (' . $_SERVER['REMOTE_ADDR'] . '): ';
-    file_put_contents($logfile, $pre . $message . "\n", FILE_APPEND);
-}
-function exec_command($command)
-{
-    $output = array();
-    exec($command, $output);
-    log_append('EXEC: ' . $command);
-    foreach ($output as $line) {
-        log_append('SHELL: ' . $line);
+
+// script errors will be send to this email:
+$error_mail = "fadlisaad@gmail.com";
+
+function run() {
+    global $rawInput;
+
+    // read config.json
+    $config_filename = 'config.json';
+    if (!file_exists($config_filename)) {
+        throw new Exception("Can't find ".$config_filename);
     }
-}
-if (isset($password))
-{
-    if (empty($_REQUEST['p'])) {
-        log_append('Missing hook password');
-        die();
-    }
-    if ($_REQUEST['p'] !== $password) {
-        log_append('Invalid hook password');
-        die();
+    $config = json_decode(file_get_contents($config_filename), true);
+
+    $postBody = $_POST['payload'];
+    $payload = json_decode($postBody);
+
+    if (isset($config['email'])) {
+        $headers = 'From: '.$config['email']['from']."\r\n";
+        $headers .= 'CC: ' . $payload->pusher->email . "\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
     }
 
-    if (empty($_REQUEST['X-Gitlab-Token'])) {
-        log_append('Missing Gitlab webhook token');
-        die();
-    }
-    if ($_REQUEST['X-Gitlab-Token'] !== $password) {
-        log_append('Invalid Gitlab webhook token');
-        die();
+    // check if the request comes from github server
+    $github_ips = array('207.97.227.253', '50.57.128.197', '108.171.174.178', '50.57.231.61');
+    if (in_array($_SERVER['REMOTE_ADDR'], $github_ips)) {
+        foreach ($config['endpoints'] as $endpoint) {
+            // check if the push came from the right repository and branch
+            if ($payload->repository->url == 'https://github.com/' . $endpoint['repo']
+                && $payload->ref == 'refs/heads/' . $endpoint['branch']) {
+
+                // execute update script, and record its output
+                ob_start();
+                passthru($endpoint['run']);
+                $output = ob_end_contents();
+
+                // prepare and send the notification email
+                if (isset($config['email'])) {
+                    // send mail to someone, and the github user who pushed the commit
+                    $body = '<p>The Github user <a href="https://github.com/'
+                    . $payload->pusher->name .'">@' . $payload->pusher->name . '</a>'
+                    . ' has pushed to ' . $payload->repository->url
+                    . ' and consequently, ' . $endpoint['action']
+                    . '.</p>';
+
+                    $body .= '<p>Here\'s a brief list of what has been changed:</p>';
+                    $body .= '<ul>';
+                    foreach ($payload->commits as $commit) {
+                        $body .= '<li>'.$commit->message.'<br />';
+                        $body .= '<small style="color:#999">added: <b>'.count($commit->added)
+                            .'</b> &nbsp; modified: <b>'.count($commit->modified)
+                            .'</b> &nbsp; removed: <b>'.count($commit->removed)
+                            .'</b> &nbsp; <a href="' . $commit->url
+                            . '">read more</a></small></li>';
+                    }
+                    $body .= '</ul>';
+                    $body .= '<p>What follows is the output of the script:</p><pre>';
+                    $body .= $output. '</pre>';
+                    $body .= '<p>Cheers, <br/>Github Webhook Endpoint</p>';
+
+                    mail($config['email']['to'], $endpoint['action'], $body, $headers);
+                }
+                return true;
+            }
+        }
+    } else {
+        throw new Exception("This does not appear to be a valid requests from Github.\n");
     }
 }
-// GitLab sends the json as raw post data
-$input = file_get_contents("php://input");
-$json  = json_decode($input);
-if (!is_object($json) || empty($json->ref)) {
-    log_append('Invalid push event data');
-    die();
-}
-if (isset($ref))
-{
-    $_refs = (array) $ref;
-    if ($ref !== '*' && !in_array($json->ref, $_refs)) {
-        log_append('Ignoring ref ' . $json->ref);
-        die();
+
+try {
+    if (!isset($_POST['payload'])) {
+        echo "Works fine.";
+    } else {
+        run();
     }
+} catch ( Exception $e ) {
+    $msg = $e->getMessage();
+    mail($error_mail, $msg, ''.$e);
 }
-log_append('Launching shell hook script...');
-exec_command('sh '.$hookfile);
-log_append('Shell hook script finished');

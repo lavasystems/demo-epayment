@@ -1,0 +1,14 @@
+{
+    "email": {
+        "from": "github-hook@perlis.gov.my",
+        "to": "fadli@reliva.com.my"
+    },
+    "endpoints": [
+        {
+            "repo": "fadlisaad/perlis",
+            "branch": "master",
+            "action": "Update Perlis git",
+            "run": "/home/bptm/git.sh"
+        }
+    ]
+}
