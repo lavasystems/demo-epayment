@@ -15,6 +15,6 @@
         "environment": "staging",
         "exchange-id": "EX00011786",
         "merchant-code": "perlis",
-        "url": "http://epayment-stg.perlis.gov.my/eps/request"
+        "url": "https://epayment-stg.perlis.gov.my/eps/request"
     }
 }
