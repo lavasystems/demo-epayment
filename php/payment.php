@@ -1,6 +1,5 @@
 <?php
 require ('stringer.php');
-define('ROOT_DIR', dirname(__DIR__, 1));
 
 class Payment
 {
@@ -22,7 +21,7 @@ class Payment
     {
         if(isset($data)){
 
-            $transaction_id = $payment_type.date('Ymdhis');
+            $transaction_id = date('Ymdhis');
 
             $payment_data = array(
                 'transaction_id' => $transaction_id,
@@ -36,16 +35,29 @@ class Payment
             );
 
             //$this->model->addPayment($payment_data);
+            $encrypt = new StringerController();
+
+            $checksum_data = [
+                'TRANS_ID' => $transaction_id,
+                'PAYMENT_MODE' => $data['payment_mode'],
+                'AMOUNT' => $data['amount'],
+                'MERCHANT_CODE' => $this->config['fpx']['merchant-code']
+            ];
+
+            $checksum = $encrypt->getChecksum($checksum_data);
 
             $fpx_data = array(
-                'transaction_id' => $transaction_id,
-                'amount' => $data['amount'],
-                'payee_name' => $data['name'],
-                'payee_email' => $data['email'],
+                'TRANS_ID' => $transaction_id,
+                'AMOUNT' => $data['amount'],
+                'PAYEE_NAME' => $data['payee_name'],
+                'PAYEE_EMAIL' => $data['payee_email'],
+                'EMAIL' => $data['payee_email'],
                 'payment_type' => $data['payment_type'],
-                'payment_mode' => $data['payment_mode'],
-                'bank_code' => $data['BANK_CODE'],
-                'be_message' => $data['BE_MESSAGE']
+                'PAYMENT_MODE' => $data['payment_mode'],
+                'BANK_CODE' => $data['bank_code'],
+                'BE_MESSAGE' => $data['be_message'],
+                'MERCHANT_CODE' => $this->config['fpx']['merchant-code'],
+                'CHECKSUM' => $checksum
             );
 
             # pass to FPX controller
@@ -62,82 +74,5 @@ class Payment
 
             // error
         }
-    }
-
-    public function paymentResponse(Request $request)
-    {
-        if (empty($request)) {
-            return $this->sendError('No return response received from payment gateway');
-        }
-
-        $status = $request->get('STATUS');
-        $order_id = $request->get('TRANS_ID');
-
-        $order = $this->orderRepository->findWithoutFail($order_id);
-
-        if (empty($order)) {
-            return $this->sendError('Order not found');
-        }
-
-        # update order (and payment not failed)
-        $this->updateOrder($order_id, $status);
-
-        # update bill to db
-        $fpx_data = [
-            'status' => $request->get('STATUS'),
-            'status_code' => $request->get('STATUS_CODE'),
-            'status_message' => $request->get('STATUS_MESSAGE'),
-            'order_id' => $request->get('TRANS_ID'),
-            'transaction_id' => $request->get('TRANS_ID'),
-            'payment_datetime' => $request->get('PAYMENT_DATETIME'),
-            'payment_mode' => $request->get('PAYMENT_MODE'),
-            'amount' => $request->get('AMOUNT'),
-            'merchant_code' => $request->get('MERCHANT_CODE'),
-            'payment_trans_id' => $request->get('PAYMENT_TRANS_ID')
-        ];
-        
-        $this->PaynetRepository->where('order_id', $order_id)->update($fpx_data);
-
-        switch ($status) {
-            case '1': # payment success
-                Notification::send($order->foodOrders[0]->food->restaurant->users, new NewOrder($order));
-                $msg = 'success';
-                break;
-
-            case '0': # pending
-                Notification::send($order->foodOrders[0]->food->restaurant->users, new NewOrder($order));
-                $msg = 'pending';
-                break;
-
-            case '2': # failed
-                $msg = 'failed';
-                break;
-            
-            default: # unknown response
-                return $this->sendError('Unknown return response status received');
-                $msg = 'unknown';
-                break;
-        }
-
-        return $this->sendResponse($fpx_data,$msg);
-    }
-
-    public static function render($fieldValues, $paymentUrl)
-    {
-        echo "<form id='autosubmit' action='".$paymentUrl."' method='post'>";
-        if (is_array($fieldValues) || is_object($fieldValues))
-        {
-            foreach ($fieldValues as $key => $val) {
-                echo "<input type='hidden' name='".ucfirst($key)."' value='".htmlspecialchars($val)."'>";
-            }
-        }
-        echo "</form>";
-        echo "
-        <script type='text/javascript'>
-            function submitForm() {
-                //document.getElementById('autosubmit').submit();
-            }
-            window.onload = submitForm;
-        </script>";
     }
 }

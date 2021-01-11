@@ -16,5 +16,8 @@
         "exchange-id": "EX00011786",
         "merchant-code": "perlis",
         "url": "https://epayment-stg.perlis.gov.my/eps/request"
+    },
+    "stringer": {
+        "url": "https://epayment-stg.perlis.gov.my/stringer"
     }
 }
