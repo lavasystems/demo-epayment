@@ -10,5 +10,11 @@
             "action": "Update Perlis git",
             "run": "/home/bptm/git.sh"
         }
-    ]
+    ],
+    "fpx": {
+        "environment": "staging",
+        "exchange-id": "EX00011786",
+        "merchant-code": "perlis",
+        "url": "http://epayment-stg.perlis.gov.my/eps/request"
+    }
 }

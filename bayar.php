@@ -81,7 +81,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="border p-3 mb-3 rounded">
-                            <form method="post" action="fpx.php">
+                            <form method="post" action="action.php?id=process-payment">
                             <h4>Maklumat Pembayaran</h4>
                             <div class="row mb-3">
                                 <div class="col">
@@ -92,15 +92,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" id="amount" placeholder="Amoun/jumlah" required="">
+                                        <input type="number" class="form-control" name="amount" placeholder="Amoun/jumlah" required="">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="nama" placeholder="Nama pembayar" required="">
+                                        <input type="text" class="form-control" name="nama" placeholder="Nama pembayar" required="">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">E-mail <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Alamat e-mail anda" required="">
+                                        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Alamat e-mail anda" required="">
                                         <small id="emailHelp" class="form-text text-muted">Ruangan bertanda * adalah wajib diisi.</small>
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                                     <select name="bank_code" id="bank_code" class="custom-select">
                                         <option>- Pilih Bank-</option>
                                     </select>
-                                    <div id="be_message"></div>
+                                    <input type="hidden" name="be_message" id="be_message">
                                 </div>
                             </div>
                             
@@ -214,7 +214,7 @@
 
             // set a loading image
             function ajax_loading_image(div) {
-                $(div).html('<div class="form-group"><div class="col-md-4"><label></label></div><div class="col-md-4"><img src="{{ asset('aiqon/assets/images/loading.gif') }}"><span>Please wait...</span></div></div>');
+                $(div).html('<div class="form-group"><div class="col-md-4"><label></label></div><div class="col-md-4"><img src="images/loading.gif"><span>Please wait...</span></div></div>');
             }
 
             // remove loading image
@@ -225,18 +225,19 @@
 
             function get_list(mode){
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     dataType: "json",
-                    url: "bank_list.php",
+                    url: "php/bank-list.php",
                     data:{
-                        mode: mode
+                        mode: mode,
+                        env: 'staging'
                     },
                     success: function(response) {
                         ajax_remove_loading_image('.select_bank');
                         $.each(response.bank_list, function(key,value){
                             $('#bank_code').append('<option value="'+ key +'">'+ value +'</option>');
                         });
-                        $('#be_message').html('<input type="hidden" name="be_message" id="be_message" value="' + response.be_message + '">');
+                        $('#be_message').val(response.be_message);
                     }
                 });
             }
