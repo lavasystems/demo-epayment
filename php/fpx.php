@@ -8,7 +8,7 @@ class FPX
 	public function __construct()
 	{
 		// read config.json
-		$config_filename = '../config.json';
+		$config_filename = ROOT_DIR.'/config.json';
 
 		if (!file_exists($config_filename)) {
 		    throw new Exception("Can't find ".$config_filename);
