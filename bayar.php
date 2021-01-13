@@ -87,7 +87,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="payment_type">Jenis Pembayaran <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="payment_type" placeholder="Masukkan jenis pembayaran yang ingin dibayar" aria-describedby="paymentHelp" required="">
+                                        <input type="text" class="form-control" name="payment_type" placeholder="Masukkan jenis pembayaran yang ingin dibayar" aria-describedby="paymentHelp" required="">
                                         <small id="paymentHelp" class="form-text text-muted">Klik <a href>di sini</a> untuk melihat jenis pembayaran yang disediakan</small>
                                     </div>
                                     <div class="form-group">
@@ -151,8 +151,6 @@
                             <div class="text-sm-right mt-2 mt-sm-0">
                                 <button type="submit" class="btn btn-success">Pembayaran</button>
                             </div>
-
-                            <input type="hidden" name="payment_method" value="Online Banking">
 
                             </form>
                         </div>

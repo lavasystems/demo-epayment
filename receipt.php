@@ -94,20 +94,31 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <p>Bayaran untuk <br>
-                                                    Jenis Pembayaran: <br>
-                                                    Transaction ID: <br>
-                                                    Keterangan perbankan internet:</p>
-                                                    
-                                                    <p>Jumlah: RM </p>
+                                                    <ul>
+                                                        <li>ID Transaksi: <?php echo $_POST['TRANS_ID'] ?></li>
+                                                        <li>Tarikh/Masa: <?php echo $_POST['PAYMENT_DATETIME'] ?></li>
+                                                        <li>Jumlah: RM <?php echo $_POST['AMOUNT'] ?></li>
+                                                        <li>Mod Pembayaran: <?php echo strtoupper($_POST['PAYMENT_MODE']) ?></li>
+                                                        <li>ID Pembayaran: <?php echo $_POST['PAYMENT_TRANS_ID'] ?></li>
+                                                        <li>Kod Pengesahan: <?php echo $_POST['APPROVAL_CODE'] ?></li>
+                                                        <li>Seller Order ID: <?php echo $_POST['MERCHANT_ORDER_NO'] ?></li>
+                                                        <li>Bank Pembayar: <?php echo $_POST['BUYER_BANK'] ?></li>
+                                                        <li>Nama Pembayar: <?php echo $_POST['BUYER_NAME'] ?></li>
+                                                        <li>Nama: <?php echo $_POST['payee_name'] ?></li>
+                                                        <li>E-mail: <?php echo $_POST['payee_email'] ?></li>
+                                                        <li>Jenis Pembayaran: <?php echo $_POST['payment_type'] ?></li>
+                                                    </ul>
                                                 </td>
                                             </tr>
+                                            <?php if($_POST['STATUS'] == 1): ?>
                                             <tr>
-                                                <td><div class="alert alert-info">Sila semak e-mail anda untuk mendapatkan pautan muat-turun dokumen ini. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada klmycity2040@dbkl.gov.my atau klmycity2040@gmail.com atau hubungi talian 03–2617 9544 / 9545 / 9546 (Seksyen Perancangan Pelan Struktur, Jabatan Perancangan Bandaraya).</div></td>
+                                                <td><div class="alert alert-info">Sila semak e-mail anda untuk menerima resit pembayaran. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada .</div></td>
                                             </tr>
+                                            <?php else: ?>
                                             <tr>
-                                                <td><div class="alert alert-warning">Pembelian anda tidak berjaya. Sila cuba semula. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada klmycity2040@dbkl.gov.my atau klmycity2040@gmail.com atau hubungi talian 03–2617 9544 / 9545 / 9546 (Seksyen Perancangan Pelan Struktur, Jabatan Perancangan Bandaraya).</div></td>
+                                                <td><div class="alert alert-warning">Pembayaran anda tidak berjaya. Sila cuba semula. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada </div></td>
                                             </tr>
+                                            <?php endif; ?>
                                             <tr>
                                                 <td>
                                                     <a href="javascript:window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Cetak</a>
@@ -115,24 +126,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="form-group">
-                                        <label for="payment_type">Jenis Pembayaran <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="payment_type" placeholder="Masukkan jenis pembayaran yang ingin dibayar" aria-describedby="paymentHelp" required="">
-                                        <small id="paymentHelp" class="form-text text-muted">Klik <a href>di sini</a> untuk melihat jenis pembayaran yang disediakan</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" name="amount" placeholder="Amoun/jumlah" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nama">Nama <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="nama" placeholder="Nama pembayar" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">E-mail <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Alamat e-mail anda" required="">
-                                        <small id="emailHelp" class="form-text text-muted">Ruangan bertanda * adalah wajib diisi.</small>
-                                    </div>
                                 </div>
                             </div>
                         </div>
