@@ -84,7 +84,6 @@
                             <h4>Resit Pembayaran</h4>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <?php var_dump($_POST); ?>
                                     <table class="table m-t-30">
                                         <thead>
                                             <tr>
@@ -106,6 +105,7 @@
                                                         <li>Nama Pembayar: <?php echo $_POST['BUYER_NAME'] ?></li>
                                                         <li>Nama: <?php echo $_POST['payee_name'] ?></li>
                                                         <li>E-mail: <?php echo $_POST['payee_email'] ?></li>
+                                                        <li>Kod Pembayaran: <?php strtoupper(echo $_POST['kod']) ?></li>
                                                         <li>Jenis Pembayaran: <?php echo $_POST['payment_type'] ?></li>
                                                     </ul>
                                                 </td>

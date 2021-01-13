@@ -83,12 +83,18 @@
                         <div class="border p-3 mb-3 rounded">
                             <form method="post" action="action.php?id=process-payment">
                             <h4>Maklumat Pembayaran</h4>
+                            <?php
+                                $url = $_SERVER['REQUEST_URI'];
+                                $url_components = parse_url($url);
+                                parse_str($url_components['query'], $params);
+                            ?>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="payment_type">Jenis Pembayaran <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="payment_type" placeholder="Masukkan jenis pembayaran yang ingin dibayar" aria-describedby="paymentHelp" required="">
                                         <small id="paymentHelp" class="form-text text-muted">Klik <a href>di sini</a> untuk melihat jenis pembayaran yang disediakan</small>
+                                        <input type="hidden" name="kod" value="<?php echo $params['kod'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
