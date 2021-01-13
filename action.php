@@ -21,6 +21,12 @@ switch ($id) {
 		
 	break;
 
+	case 'response':
+	
+		var_dump($_POST);
+		
+	break;
+
 	case 'fpx-request':
 
 
