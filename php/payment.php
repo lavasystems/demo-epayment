@@ -30,6 +30,7 @@ class Payment
                 'payment_time' => date('H:i:s'),
                 'payment_type' => $data['payment_type'],
                 'payment_mode' => $data['payment_mode'],
+                'kod' => $data['kod'],
                 'remarks' => '',
                 'status' => 'processing'
             );
@@ -54,6 +55,7 @@ class Payment
                 'EMAIL' => $data['payee_email'],
                 'payment_type' => $data['payment_type'],
                 'PAYMENT_MODE' => $data['payment_mode'],
+                'KOD' => $data['kod'],
                 'BANK_CODE' => $data['bank_code'],
                 'BE_MESSAGE' => $data['be_message'],
                 'MERCHANT_CODE' => $this->config['fpx']['merchant-code'],

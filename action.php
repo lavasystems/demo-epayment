@@ -12,6 +12,7 @@ switch ($id) {
             'payee_name' => $_POST['nama'],
             'payee_email' => $_POST['email'],
             'payment_type' => $_POST['payment_type'],
+            'kod' => $_POST['kod'],
             'payment_mode' => $_POST['payment_mode'],
             'bank_code' => $_POST['bank_code'],
             'be_message' => $_POST['be_message']
