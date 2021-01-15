@@ -94,25 +94,25 @@
                                             <tr>
                                                 <td>
                                                     <ul>
-                                                        <li>ID Transaksi: <?php echo $_POST['TRANS_ID'] ?></li>
-                                                        <li>Tarikh/Masa: <?php echo $_POST['PAYMENT_DATETIME'] ?></li>
-                                                        <li>Jumlah: RM <?php echo $_POST['AMOUNT'] ?></li>
-                                                        <li>Mod Pembayaran: <?php echo strtoupper($_POST['PAYMENT_MODE']) ?></li>
-                                                        <li>ID Pembayaran: <?php echo $_POST['PAYMENT_TRANS_ID'] ?></li>
-                                                        <li>Kod Pengesahan: <?php echo $_POST['APPROVAL_CODE'] ?></li>
-                                                        <li>Seller Order ID: <?php echo $_POST['MERCHANT_ORDER_NO'] ?></li>
-                                                        <li>Bank Pembayar: <?php echo $_POST['BUYER_BANK'] ?></li>
-                                                        <li>Nama Pembayar: <?php echo $_POST['BUYER_NAME'] ?></li>
-                                                        <li>Nama: <?php echo $_POST['payee_name'] ?></li>
-                                                        <li>E-mail: <?php echo $_POST['payee_email'] ?></li>
-                                                        <li>Kod Pembayaran: <?php strtoupper(echo $_POST['kod']) ?></li>
-                                                        <li>Jenis Pembayaran: <?php echo $_POST['payment_type'] ?></li>
+                                                        <li>ID Transaksi: <?php echo $_POST['TRANS_ID'] ?? '' ?></li>
+                                                        <li>Tarikh/Masa: <?php echo $_POST['PAYMENT_DATETIME'] ?? '' ?></li>
+                                                        <li>Jumlah: RM <?php echo $_POST['AMOUNT'] ?? '' ?></li>
+                                                        <li>Mod Pembayaran: <?php echo strtoupper($_POST['PAYMENT_MODE']) ?? '' ?></li>
+                                                        <li>ID Pembayaran: <?php echo $_POST['PAYMENT_TRANS_ID'] ?? '' ?></li>
+                                                        <li>Kod Pengesahan: <?php echo $_POST['APPROVAL_CODE'] ?? '' ?></li>
+                                                        <li>Seller Order ID: <?php echo $_POST['MERCHANT_ORDER_NO'] ?? '' ?></li>
+                                                        <li>Bank Pembayar: <?php echo $_POST['BUYER_BANK'] ?? '' ?></li>
+                                                        <li>Nama Pembayar: <?php echo $_POST['BUYER_NAME'] ?? '' ?></li>
+                                                        <li>Nama: <?php echo $_POST['payee_name'] ?? '' ?></li>
+                                                        <li>E-mail: <?php echo $_POST['payee_email'] ?? '' ?></li>
+                                                        <li>Jenis Pembayaran: <?php echo $_POST['payment_type'] ?? '' ?></li>
+                                                        <li>Kod Pembayaran: <?php echo $_POST['kod'] ?? '' ?></li>
                                                     </ul>
                                                 </td>
                                             </tr>
                                             <?php if($_POST['STATUS'] == 1): ?>
                                             <tr>
-                                                <td><div class="alert alert-info">Sila semak e-mail anda untuk menerima resit pembayaran. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada .</div></td>
+                                                <td><div class="alert alert-info">Pembayaran anda telah diterima. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada .</div></td>
                                             </tr>
                                             <?php else: ?>
                                             <tr>

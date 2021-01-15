@@ -44,13 +44,4 @@ switch ($id) {
 		
 	break;
 
-	case 'fpx-request':
-
-
-
-	break;
-	
-	default:
-		# code...
-		break;
 }
