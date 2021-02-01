@@ -11,13 +11,19 @@
             "run": "/home/bptm/git.sh"
         }
     ],
-    "fpx": {
+    /*"fpx": {
         "environment": "Staging",
         "exchange-id": "EX00011786",
         "merchant-code": "perlis",
         "url": "https://epayment-stg.perlis.gov.my/eps/request"
+    },*/
+    "fpx": {
+        "environment": "Production",
+        "exchange-id": "EX00011050",
+        "merchant-code": "perlis-prod",
+        "url": "https://epayment.perlis.gov.my/eps/request"
     },
     "stringer": {
-        "url": "https://epayment-stg.perlis.gov.my/stringer"
+        "url": "https://epayment.perlis.gov.my/stringer"
     }
 }
