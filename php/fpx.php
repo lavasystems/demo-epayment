@@ -16,11 +16,11 @@ class FPX
 		$this->config = json_decode(file_get_contents($config_filename), true);
 	}
 
-	public function get_bank_list()
+	public function get_bank_list($post)
 	{
-		$mode = $_POST['mode'];
-		$env = $_POST['env'];
-		$cache = 30;
+		$mode = $post['mode'];
+		$env = $post['env'];
+		$cache = $this->config['cache'];
 
 		$file = ROOT_DIR.'/fpx/'. $mode. '-'. $env. '.json';
 		$be_file = ROOT_DIR.'/fpx/be_message.json';
@@ -108,6 +108,8 @@ class FPX
 				else
 					$bank_list[$key] = $key.$value;
 			}
+
+			asort($bank_list);
 
 			# store bank list for drop down select
 			file_put_contents($file, json_encode($bank_list));
