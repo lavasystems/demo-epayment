@@ -74,7 +74,7 @@
                                             </tr>
                                             <?php else: ?>
                                             <tr>
-                                                <td><div class="alert alert-warning">Pembayaran anda tidak berjaya. Sila cuba semula. Jika anda mempunyai sebarang pertanyaan, sila hunbungi seketariat e-Bayar Perlis.</div></td>
+                                                <td><div class="alert alert-warning">Pembayaran anda tidak berjaya. Sila cuba semula. Jika anda mempunyai sebarang pertanyaan, sila hubungi seketariat e-Bayar Perlis.</div></td>
                                             </tr>
                                             <?php endif; ?>
                                             <tr>
