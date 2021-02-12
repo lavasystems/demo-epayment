@@ -28,7 +28,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6 offset-lg-3">
                         <div class="border p-3 mb-3 rounded">
                             <h4>Pengesahan Pembayaran</h4>
                             <div class="row mb-3">
