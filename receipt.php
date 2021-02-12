@@ -43,6 +43,7 @@
                                             <tr>
                                                 <td>
                                                     <ul>
+                                                        <li>No. Resit: <?php echo $_POST['RESIT_NO'] ?? '' ?></li>
                                                         <li>ID Transaksi: <?php echo $_POST['TRANS_ID'] ?? '' ?></li>
                                                         <li>Tarikh/Masa: <?php echo $_POST['PAYMENT_DATETIME'] ?? '' ?></li>
                                                         <li>Jumlah: RM <?php echo $_POST['AMOUNT'] ?? '' ?></li>
