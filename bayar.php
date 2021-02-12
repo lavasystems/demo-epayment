@@ -141,7 +141,7 @@
                     url: "php/bank-list.php",
                     data:{
                         mode: mode,
-                        env: 'staging'
+                        env: 'production'
                     },
                     success: function(response) {
                         $.each(response.bank_list, function(key,value){
