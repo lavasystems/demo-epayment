@@ -23,6 +23,48 @@
 
     <body>
 
+        <!--Navbar Start-->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
+            <div class="container-fluid">
+                <!-- LOGO -->
+                <a class="logo text-uppercase" href="index.html">
+                    <img src="images/logo.png" alt="" class="logo-light" height="50" />
+                    <img src="images/logo.png" alt="" class="logo-dark" height="50" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto" id="mySidenav">
+                        <li class="nav-item active">
+                            <a href="http://ebayar.perlis.gov.my" class="btn btn-secondary">Laman Utama</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <!-- home start -->
+        <section class="bg-home bg-gradient" id="home">
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="text-center">
+                                    <h2 class="text-white">Pembayaran</h2>
+                                    <p class="text-light">Isikan maklumat pembayaran seperti dibawah</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- home end -->
+
         <!-- content start -->
         <section class="section">
             <div class="container-fluid">
@@ -30,19 +72,19 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="border p-3 mb-3 rounded">
-                            <form method="post" action="action.php?id=confirm-payment" novalidate>
+                            <form method="post" action="action.php?id=confirm-payment" id="form-bayar">
                             <h4>Maklumat Pembayaran</h4>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="payment_type">Agensi <span class="text-danger">*</span></label>
-                                        <select name="agency" id="agency" class="custom-select agency">
+                                        <select name="agency" id="agency" class="custom-select agency" required="">
                                             <option value="0">- Pilih Agensi -</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="payment_type">Jenis Pembayaran <span class="text-danger">*</span></label>
-                                        <select name="service" id="service" class="custom-select service">
+                                        <select name="service" id="service" class="custom-select service" required="">
                                             <option value="0">- Pilih Jenis Pembayaran -</option>
                                         </select>
                                     </div>
@@ -74,11 +116,11 @@
                                     </div>
                                     <div class="form-group" id="alamat" style="display:none;">
                                         <label for="alamat">Alamat Rumah (Harumanis) <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="alamat" placeholder="Alamat penghantaran (Harumanis)" required="">
+                                        <input type="text" class="form-control" name="alamat" placeholder="Alamat penghantaran (Harumanis)">
                                     </div>
                                     <div class="form-group" id="cukai" style="display:none;">
                                         <label for="cukai">No. Cukai Taksiran / No. Akaun <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="cukai" placeholder="No. Cukai Taksiran / No. Akaun" required="">
+                                        <input type="text" class="form-control" name="cukai" placeholder="No. Cukai Taksiran / No. Akaun">
                                     </div>
                                     <small id="emailHelp" class="form-text text-muted">Ruangan bertanda * adalah wajib diisi.</small>
                                 </div>
@@ -95,7 +137,7 @@
                             <div class="row mb-3">
                                 <div class="select_bank"></div>
                                 <div class="col">
-                                    <select name="bank_code" id="bank_code" class="custom-select">
+                                    <select name="bank_code" id="bank_code" class="custom-select" required="">
                                         <option>- Pilih Bank-</option>
                                     </select>
                                     <input type="hidden" name="be_message" id="be_message">
@@ -105,13 +147,13 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="agree" name="agree">
+                                        <input type="checkbox" class="custom-control-input" id="agree" name="agree" required="">
                                         <label class="custom-control-label" for="agree">Dengan memilih mod pembayaran ini, anda bersetuju dengan <a href="https://www.mepsfpx.com.my/FPXMain/termsAndConditions.jsp" target="_blank">terma dan syarat</a> FPX.</label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="text-sm-right mt-2 mt-sm-0">
+                            <div class="mt-3">
                                 <button type="submit" class="btn btn-success">Pembayaran</button>
                             </div>
 
@@ -122,6 +164,24 @@
                 <!-- end row -->
             </div>
         </section>
+
+        <!-- footer start -->
+        <footer class="footer">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="">&copy; 2021 Hakcipta Terpelihara Kerajaan Negeri Perlis</p>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </footer>
+        <!-- footer end -->
         
         <!-- Back to top -->    
         <a href="#" class="back-to-top" id="back-to-top"> <i class="mdi mdi-chevron-up"> </i> </a>
@@ -132,6 +192,7 @@
 
         <!-- custom js -->
         <script src="js/app.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LfUYlgaAAAAAOUaTl007VxYInWIDFb1nHBHpt1G"></script>
         <script>
 
             function get_list(mode){
@@ -151,6 +212,18 @@
                     }
                 });
             }
+
+            $('#form-bayar').submit(function(event) {
+                event.preventDefault();
+         
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LfUYlgaAAAAAOUaTl007VxYInWIDFb1nHBHpt1G', {action: 'submit_payment'}).then(function(token) {
+                        $(this).prepend('<input type="hidden" name="token" value="' + token + '">');
+                        $(this).prepend('<input type="hidden" name="action" value="submit_payment">');
+                        $(this).unbind('submit').submit();
+                    });;
+                });
+            });
 
             $(document).ready(function(){
 
@@ -176,13 +249,19 @@
                             $('#service').append(data);
                         }
                     });
+                });
+                    
 
-                    if(agency_code == 6){
+                $('select.service').on('change', function(){
+                    var agency_code = $('select.agency').find('option:selected').data('id');
+                    var service_code = $(this).find('option:selected').val();
+
+                    if(agency_code == 6 && service_code == 2){
                         $('#alamat').show();
                     } else {
                         $('#alamat').hide();
                     }
-                    if(agency_code == 16){
+                    if(agency_code == 16 && service_code == 1){
                         $('#cukai').show();
                     } else {
                         $('#cukai').hide();

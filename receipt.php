@@ -23,6 +23,48 @@
 
     <body>
 
+        <!--Navbar Start-->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
+            <div class="container-fluid">
+                <!-- LOGO -->
+                <a class="logo text-uppercase" href="index.html">
+                    <img src="images/logo.png" alt="" class="logo-light" height="50" />
+                    <img src="images/logo.png" alt="" class="logo-dark" height="50" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto" id="mySidenav">
+                        <li class="nav-item active">
+                            <a href="http://ebayar.perlis.gov.my" class="btn btn-secondary">Laman Utama</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <!-- home start -->
+        <section class="bg-home bg-gradient" id="home">
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="text-center">
+                                    <h2 class="text-white">Bukti Pembayaran</h2>
+                                    <p class="text-light">Sila semak bukti pembayaran berikut</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- home end -->
+
         <!-- content start -->
         <section class="section">
             <div class="container-fluid">
@@ -93,6 +135,24 @@
                 <!-- end row -->
             </div>
         </section>
+
+        <!-- footer start -->
+        <footer class="footer">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="">&copy; 2021 Hakcipta Terpelihara Kerajaan Negeri Perlis</p>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </footer>
+        <!-- footer end -->
         
         <!-- Back to top -->    
         <a href="#" class="back-to-top" id="back-to-top"> <i class="mdi mdi-chevron-up"> </i> </a>

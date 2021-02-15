@@ -23,73 +23,119 @@
 
     <body>
 
+        <!--Navbar Start-->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
+            <div class="container-fluid">
+                <!-- LOGO -->
+                <a class="logo text-uppercase" href="index.html">
+                    <img src="images/logo.png" alt="" class="logo-light" height="50" />
+                    <img src="images/logo.png" alt="" class="logo-dark" height="50" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto" id="mySidenav">
+                        <li class="nav-item active">
+                            <a href="http://ebayar.perlis.gov.my" class="btn btn-secondary">Laman Utama</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <!-- home start -->
+        <section class="bg-home bg-gradient" id="home">
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="text-center">
+                                    <h2 class="text-white">Pengesahan Pembayaran</h2>
+                                    <p class="text-light">Sila semak maklumat pembayaran berikut</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- home end -->
+
         <!-- content start -->
         <section class="section">
             <div class="container-fluid">
 
                 <div class="row">
                     <div class="col-lg-6 offset-lg-3">
-                        <div class="border p-3 mb-3 rounded">
-                            <h4>Pengesahan Pembayaran</h4>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <?php
-                                    require ('php/conn.php');
+                        <div class="card">
+                            <div class="card-header bg-primary">
+                                <h4 class="text-white">Pengesahan</h4>
+                            </div>
+                            <div class="card-body">
+                                <?php
+                                require ('php/conn.php');
 
-                                    $service = $_POST['service'];
-                                    $agency = $_POST['agency'];
+                                $service = $_POST['service'];
+                                $agency = $_POST['agency'];
 
-                                    $stmt_agency = $pdo->prepare("SELECT name FROM agencies WHERE code = :agency");
-                                    $stmt_agency->execute(['agency' => $agency]); 
-                                    $row_agency = $stmt_agency->fetch();
+                                $stmt_agency = $pdo->prepare("SELECT name FROM agencies WHERE code = :agency");
+                                $stmt_agency->execute(['agency' => $agency]); 
+                                $row_agency = $stmt_agency->fetch();
 
-                                    $stmt_service = $pdo->prepare("SELECT name FROM services WHERE id = :service");
-                                    $stmt_service->execute(['service' => $service]); 
-                                    $row_service = $stmt_service->fetch();
+                                $stmt_service = $pdo->prepare("SELECT name FROM services WHERE id = :service");
+                                $stmt_service->execute(['service' => $service]); 
+                                $row_service = $stmt_service->fetch();
 
-                                    $data = $_POST;
+                                $data = $_POST;
 
-                                    echo "<form id='confirm' action='action.php?id=process-payment' method='post'>";
-                                    if (is_array($data) || is_object($data))
-                                    {
-                                        foreach ($data as $key => $val) {
-                                            echo "<input type='hidden' name='".$key."' value='".htmlspecialchars($val)."'>";
-                                        }
+                                echo "<form id='confirm' action='action.php?id=process-payment' method='post'>";
+                                if (is_array($data) || is_object($data))
+                                {
+                                    foreach ($data as $key => $val) {
+                                        echo "<input type='hidden' name='".$key."' value='".htmlspecialchars($val)."'>";
                                     }
-                                    echo "<input type='hidden' name='nama_agensi' value='".$row_agency['name']."'>";
-                                    echo "<input type='hidden' name='jenis_pembayaran' value='".$row_service['name']."'>";
-                                    echo "</form>";
-                                    ?>
-                                    <table class="table m-t-30">
-                                        <thead>
-                                            <tr>
-                                                <th>Sila semak maklumat pembayaran berikut:</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <ul>
-                                                        <li>Agensi: <?php echo $row_agency['name'] ?? '' ?></li>
-                                                        <li>Jenis Pembayaran: <?php echo $row_service['name'] ?? '' ?></li>
-                                                        <li>Jumlah: RM <?php echo number_format($_POST['amount'],2) ?? '' ?></li>
-                                                        <li>Nama: <?php echo $_POST['nama'] ?? '' ?></li>
-                                                        <li>No. Kad Pengenalan: <?php echo $_POST['nric'] ?? '' ?></li>
-                                                        <li>E-mail: <?php echo $_POST['email'] ?? '' ?></li>
-                                                        <li>Telefon: <?php echo $_POST['telefon'] ?? '' ?></li>
-                                                        <li>Catatan: <?php echo $_POST['catatan'] ?? '' ?></li>
-                                                        <?php isset($_POST['alamat']) ? '<li>Alamat Rumah (Harumanis):'.$_POST['alamat'].'</li>' : '' ?>
-                                                        <?php isset($_POST['cukai']) ? '<li>No. Cukai Taksiran / No. Akaun:'.$_POST['cukai'].'</li>' : '' ?>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                                <td>
-                                                    <a href="#" onclick="submitForm()" class="btn btn-primary"><i class="fa fa-print"></i> Bayar</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                }
+                                echo "<input type='hidden' name='nama_agensi' value='".$row_agency['name']."'>";
+                                echo "<input type='hidden' name='jenis_pembayaran' value='".$row_service['name']."'>";
+                                echo "</form>";
+                                ?>
+
+                                <dl class="row">
+                                    <dt class="col-md-3">Agensi</dt>
+                                    <dd class="col-md-9"><?php echo $row_agency['name'] ?? '' ?></dd>
+
+                                    <dt class="col-md-3">Jenis Pembayaran</dt>
+                                    <dd class="col-md-9"><?php echo $row_service['name'] ?? '' ?></dd>
+
+                                    <dt class="col-md-3">Jumlah</dt>
+                                    <dd class="col-md-9">RM <?php echo number_format($_POST['amount'],2) ?? '' ?></dd>
+
+                                    <dt class="col-md-3">Nama</dt>
+                                    <dd class="col-md-9"><?php echo $_POST['nama'] ?? '' ?></dd>
+
+                                    <dt class="col-md-3">No. Kad Pengenalan</dt>
+                                    <dd class="col-md-9"><?php echo $_POST['nric'] ?? '' ?></dd>
+
+                                    <dt class="col-md-3">E-mail</dt>
+                                    <dd class="col-md-9"><?php echo $_POST['email'] ?? '' ?></dd>
+
+                                    <dt class="col-md-3">Telefon</dt>
+                                    <dd class="col-md-9"><?php echo $_POST['telefon'] ?? '' ?></dd>
+
+                                    <dt class="col-md-3">Catatan</dt>
+                                    <dd class="col-md-9"><?php echo $_POST['catatan'] ?? '' ?></dd>
+                                    
+                                    <?php isset($_POST['alamat']) ? '<dt class="col-md-3">Alamat Rumah (Harumanis)</dt><dd class="col-md-9">'.$_POST['alamat'].'</dd>' : '' ?>
+                                    <?php isset($_POST['cukai']) ? '<dt class="col-md-3">No. Cukai Taksiran / No. Akaun</dt><dd class="col-md-9">'.$_POST['cukai'].'</dd>' : '' ?>
+                                </dl>
+                                
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" onclick="submitForm()" class="btn btn-primary"><i class="fa fa-print"></i> Bayar</a>
                             </div>
                         </div>
                     </div>
