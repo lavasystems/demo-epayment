@@ -5,7 +5,7 @@ switch ($id) {
 
     case 'confirm-payment':
 
-        define("RECAPTCHA_V3_SECRET_KEY", '6LfUYlgaAAAAADG5m8cwDAiG_5SU1y8vyax4qviM');
+        define("RECAPTCHA_V3_SECRET_KEY", 'key_goes_here');
  
         if (isset($_POST['email']) && $_POST['email']) {
             $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
