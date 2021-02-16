@@ -87,10 +87,11 @@
                                         <select name="service" id="service" class="custom-select service" required="">
                                             <option value="0">- Pilih Jenis Pembayaran -</option>
                                         </select>
+                                        <input type="hidden" name="TRANS_ID" id="TRANS_ID">
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" name="amount" placeholder="Amoun/jumlah" required="">
+                                        <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amoun/jumlah" required="">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama <span class="text-danger">*</span></label>
@@ -202,7 +203,7 @@
                     url: "php/bank-list.php",
                     data:{
                         mode: mode,
-                        env: 'production'
+                        env: 'staging'
                     },
                     success: function(response) {
                         $.each(response.bank_list, function(key,value){
@@ -254,6 +255,7 @@
 
                 $('select.service').on('change', function(){
                     var agency_code = $('select.agency').find('option:selected').data('id');
+                    var agency = $('select.agency').find('option:selected').val();
                     var service_code = $(this).find('option:selected').val();
 
                     if(agency_code == 6 && service_code == 2){
@@ -266,6 +268,8 @@
                     } else {
                         $('#cukai').hide();
                     }
+                    var timestamp = '<?php echo date("YmdHis",time()) ?>';
+                    $('#TRANS_ID').val(agency + '-' + service_code + '-' + timestamp);
                 });
 
                 var mode = "01"; //Individual
