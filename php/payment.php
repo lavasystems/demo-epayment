@@ -98,7 +98,7 @@ class Payment
             # pass to FPX controller
             echo "<form id=\"myForm\" action=\"".$this->config['fpx']['url']."\" method=\"post\">";
             foreach ($fpx_data as $a => $b) {
-                echo '<input type="hidden" name="'.htmlentities($a).'" value="'.htmlentities($b).'">';
+                echo '<input type="hidden" name="'.htmlentities($a).'" value="'.filter_var($b, FILTER_SANITIZE_STRING).'">';
             }
             echo "</form>";
             echo "<script type=\"text/javascript\">
@@ -158,7 +158,7 @@ class Payment
         // redirect to receipt page
         echo "<form id=\"receipt\" action=\"receipt.php\" method=\"post\">";
         foreach ($input as $a => $b) {
-            echo '<input type="hidden" name="'.htmlentities($a).'" value="'.htmlentities($b).'">';
+            echo '<input type="hidden" name="'.htmlentities($a).'" value="'.filter_var($b, FILTER_SANITIZE_STRING).'">';
         }
         echo "</form>";
         echo "<script type=\"text/javascript\">

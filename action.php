@@ -5,7 +5,7 @@ switch ($id) {
 
     case 'confirm-payment':
 
-        define("RECAPTCHA_V3_SECRET_KEY", 'key_goes_here');
+        define("RECAPTCHA_V3_SECRET_KEY", '');
  
         if (isset($_POST['email']) && $_POST['email']) {
             $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
@@ -34,7 +34,7 @@ switch ($id) {
             if (is_array($data) || is_object($data))
             {
                 foreach ($data as $key => $val) {
-                    echo "<input type='hidden' name='".$key."' value='".htmlspecialchars($val)."'>";
+                    echo "<input type='hidden' name='".$key."' value='".filter_var($val, FILTER_SANITIZE_STRING)."'>";
                 }
             }
             echo "</form>";

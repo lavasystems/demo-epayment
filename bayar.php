@@ -219,9 +219,9 @@
          
                 grecaptcha.ready(function() {
                     grecaptcha.execute('6LfUYlgaAAAAAOUaTl007VxYInWIDFb1nHBHpt1G', {action: 'submit_payment'}).then(function(token) {
-                        $(this).prepend('<input type="hidden" name="token" value="' + token + '">');
-                        $(this).prepend('<input type="hidden" name="action" value="submit_payment">');
-                        $(this).unbind('submit').submit();
+                        $('#form-bayar').prepend('<input type="hidden" name="token" value="' + token + '">');
+                        $('#form-bayar').prepend('<input type="hidden" name="action" value="submit_payment">');
+                        $('#form-bayar').unbind('submit').submit();
                     });;
                 });
             });

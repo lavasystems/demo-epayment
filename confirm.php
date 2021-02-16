@@ -96,7 +96,7 @@
                                 if (is_array($data) || is_object($data))
                                 {
                                     foreach ($data as $key => $val) {
-                                        echo "<input type='hidden' name='".$key."' value='".htmlspecialchars($val)."'>";
+                                        echo "<input type='hidden' name='".$key."' value='".filter_var($val, FILTER_SANITIZE_STRING)."'>";
                                     }
                                 }
                                 echo "<input type='hidden' name='nama_agensi' value='".$row_agency['name']."'>";
