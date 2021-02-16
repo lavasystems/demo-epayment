@@ -65,7 +65,7 @@ class Payment
             $encrypt = new StringerController();
 
             $checksum_data = [
-                'TRANS_ID' => $transaction_id,
+                'TRANS_ID' => $transaction_data['TRANS_ID'].'-'.$transaction_id,
                 'PAYMENT_MODE' => $transaction_data['payment_mode'],
                 'AMOUNT' => $transaction_data['amount'],
                 'MERCHANT_CODE' => $data['agency']
@@ -74,7 +74,7 @@ class Payment
             $checksum = $encrypt->getChecksum($checksum_data);
 
             $fpx_data = array(
-                'TRANS_ID' => $transaction_id,
+                'TRANS_ID' => $transaction_data['TRANS_ID'].'-'.$transaction_id,
                 'AMOUNT' => $transaction_data['amount'],
                 'PAYEE_NAME' => $transaction_extra['nama'],
                 'PAYEE_EMAIL' => $transaction_extra['email'],

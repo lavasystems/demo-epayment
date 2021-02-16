@@ -268,7 +268,7 @@
                     } else {
                         $('#cukai').hide();
                     }
-                    var timestamp = '<?php echo date("YmdHis",time()) ?>';
+                    var timestamp = '<?php echo date("Ymd",time()) ?>';
                     $('#TRANS_ID').val(agency + '-' + service_code + '-' + timestamp);
                 });
 
