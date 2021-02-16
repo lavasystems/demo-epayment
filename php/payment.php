@@ -22,6 +22,12 @@ class Payment
 
         if(isset($data)){
 
+            if($this->config['fpx']['environment'] == 'Staging'){
+                $merchant_code = '001000STG';
+            } else {
+                $merchant_code = $data['agency'];
+            }
+
             $transaction_data = array(
                 'service_id' => $data['service'],
                 'amount' => $data['amount'],
@@ -68,7 +74,7 @@ class Payment
                 'TRANS_ID' => $data['TRANS_ID'].'-'.$transaction_id,
                 'PAYMENT_MODE' => $transaction_data['payment_mode'],
                 'AMOUNT' => $transaction_data['amount'],
-                'MERCHANT_CODE' => $data['agency']
+                'MERCHANT_CODE' => $merchant_code
             ];
 
             $checksum = $encrypt->getChecksum($checksum_data);
@@ -82,7 +88,7 @@ class Payment
                 'PAYMENT_MODE' => $transaction_data['payment_mode'],
                 'BANK_CODE' => $data['bank_code'],
                 'BE_MESSAGE' => $data['be_message'],
-                'MERCHANT_CODE' => $data['agency'],
+                'MERCHANT_CODE' => $merchant_code,
                 'CHECKSUM' => $checksum,
                 'nama' => $data['nama'],
                 'nric' => $data['nric'],
