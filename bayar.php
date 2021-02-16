@@ -1,3 +1,17 @@
+<?php
+$config_filename = 'config.json';
+if (!file_exists($config_filename)) {
+    throw new Exception("Can't find ".$config_filename);
+}
+$config = json_decode(file_get_contents($config_filename), true);
+if($config['fpx']['environment'] == 'Staging'){
+    $env = 'staging';
+    $merchant_code = '001000STG';
+} else {
+    $env = 'production';
+    $merchant_code = '';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -195,7 +209,6 @@
         <script src="js/app.js"></script>
         <script src="https://www.google.com/recaptcha/api.js?render=6LfUYlgaAAAAAOUaTl007VxYInWIDFb1nHBHpt1G"></script>
         <script>
-
             function get_list(mode){
                 $.ajax({
                     type: "POST",
@@ -203,7 +216,7 @@
                     url: "php/bank-list.php",
                     data:{
                         mode: mode,
-                        env: 'staging'
+                        env: '<?php echo $env ?>'
                     },
                     success: function(response) {
                         $.each(response.bank_list, function(key,value){
@@ -251,11 +264,18 @@
                         }
                     });
                 });
-                    
 
                 $('select.service').on('change', function(){
+
+                    var environment = '<?php echo $env ?>';
                     var agency_code = $('select.agency').find('option:selected').data('id');
-                    var agency = $('select.agency').find('option:selected').val();
+
+                    if(environment == 'staging'){
+                        var agency = '<?php echo $merchant_code ?>';
+                    } else {
+                        var agency = $('select.agency').find('option:selected').val();
+                    }
+                    
                     var service_code = $(this).find('option:selected').val();
 
                     if(agency_code == 6 && service_code == 2){
@@ -268,7 +288,7 @@
                     } else {
                         $('#cukai').hide();
                     }
-                    var timestamp = '<?php echo date("Ymd",time()) ?>';
+                    var timestamp = '<?php echo date('Ymd') ?>';
                     $('#TRANS_ID').val(agency + '-' + service_code + '-' + timestamp);
                 });
 
