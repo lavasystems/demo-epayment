@@ -105,7 +105,7 @@ if($config['fpx']['environment'] == 'Staging'){
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
-                                        <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amoun/jumlah" required="">
+                                        <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amoun/jumlah" required="" pattern="[-+]?[0-9]*[.,]?[0-9]+">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama <span class="text-danger">*</span></label>
@@ -114,7 +114,7 @@ if($config['fpx']['environment'] == 'Staging'){
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label for="nric">No. Kad Pengenalan <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="nric" placeholder="XXXXXX-XX-XXXX" required="">
+                                            <input type="text" class="form-control" name="nric" placeholder="XXXXXX-XX-XXXX" required="" pattern="[0-9]{6}\-[0-9]{2}\-[0-9]{4}">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="telefon">No. Telefon <span class="text-danger">*</span></label>
@@ -134,8 +134,8 @@ if($config['fpx']['environment'] == 'Staging'){
                                         <input type="text" class="form-control" name="alamat" placeholder="Alamat penghantaran (Harumanis)">
                                     </div>
                                     <div class="form-group" id="cukai" style="display:none;">
-                                        <label for="cukai">No. Cukai Taksiran / No. Akaun <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="cukai" placeholder="No. Cukai Taksiran / No. Akaun">
+                                        <label for="cukai">No. Cukai Tanah / No. Akaun <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="cukai" placeholder="No. Cukai Tanah / No. Akaun">
                                     </div>
                                     <small id="emailHelp" class="form-text text-muted">Ruangan bertanda * adalah wajib diisi.</small>
                                 </div>
@@ -146,8 +146,25 @@ if($config['fpx']['environment'] == 'Staging'){
                         <!-- Credit/Debit Card box-->
                         <div class="border p-3 mb-3 rounded">
 
-                            <h4>Perbankan Atas Talian/Kad Debit</h4>
-                            <p class="mb-3 pt-1">Pembayaran menggunakan akaun bank atau kad debit anda</p>
+                            <h4>Perbankan Internet</h4>
+                            <p class="mb-3 pt-1">Pembayaran menggunakan akaun bank anda</p>
+
+                            <div class="alert alert-info">Individu: Minimum RM 1.00 dan maksimum RM 30,000.00<br>Korporat: Minimum RM 2.00 dan maksimum RM 1,000,000.00</div>
+
+                            <div class="row mb-3">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="fpx" name="payment_mode" class="custom-control-input" value="fpx">
+                                        <label class="custom-control-label" for="fpx">Perbankan Internet (Individu)</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="fpx1" name="payment_mode" class="custom-control-input" value="fpx1">
+                                        <label class="custom-control-label" for="fpx1">Perbankan Internet (Korporat)</label>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row mb-3">
                                 <div class="select_bank"></div>
@@ -209,6 +226,19 @@ if($config['fpx']['environment'] == 'Staging'){
         <script src="js/app.js"></script>
         <script src="https://www.google.com/recaptcha/api.js?render=6LfUYlgaAAAAAOUaTl007VxYInWIDFb1nHBHpt1G"></script>
         <script>
+
+            $('#fpx').on('change', function() {
+                var mode = "01";
+                $('#bank_code').empty();
+                get_list(mode);
+            });
+
+            $('#fpx1').on('change', function() {
+                var mode = "02";
+                $('#bank_code').empty();
+                get_list(mode);
+            });
+
             function get_list(mode){
                 $.ajax({
                     type: "POST",
@@ -292,9 +322,7 @@ if($config['fpx']['environment'] == 'Staging'){
                     $('#TRANS_ID').val(agency + '-' + service_code + '-' + timestamp);
                 });
 
-                var mode = "01"; //Individual
-                    get_list(mode);
-                });
+            });
         </script>
     </body>
 
