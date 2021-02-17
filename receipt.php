@@ -112,7 +112,7 @@
                                             </tr>
                                             <?php if($_POST['STATUS'] == 1): ?>
                                             <tr>
-                                                <td><div class="alert alert-info">Pembayaran anda telah diterima. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada .</div></td>
+                                                <td><div class="alert alert-info">Pembayaran anda telah diterima. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada ebayar@perlis.gov.my</div></td>
                                             </tr>
                                             <?php else: ?>
                                             <tr>
@@ -137,28 +137,28 @@
 
         <?php
         // prepare receipt
-        $receipt = "<ul>
-            <li>No. Resit: ".$_POST['RECEIPT_NO'] ?? ''."</li>
-            <li>ID Transaksi: ".$_POST['TRANS_ID'] ?? ''."</li>
-            <li>Tarikh/Masa: ".$_POST['PAYMENT_DATETIME'] ?? ''."</li>
-            <li>Jumlah: RM ".$_POST['AMOUNT'] ?? ''."</li>
-            <li>Mod Pembayaran: ".strtoupper($_POST['PAYMENT_MODE']) ?? ''."</li>
-            <li>ID Pembayaran: ".$_POST['PAYMENT_TRANS_ID'] ?? ''."</li>
-            <li>Kod Pengesahan: ".$_POST['APPROVAL_CODE'] ?? ''."</li>
-            <li>Bank Pembayar: ".$_POST['BUYER_BANK'] ?? ''."</li>
-            <li>Nama Pembayar: ".$_POST['BUYER_NAME'] ?? ''."</li>
-            <li>Nama: ".$_POST['nama'] ?? ''."</li>
-            <li>No. Kad Pengenalan: ".$_POST['nric'] ?? ''."</li>
-            <li>Telefon: ".$_POST['telefon'] ?? ''."</li>
-            <li>E-mail: ".$_POST['email'] ?? ''."</li>
-            <li>Jenis Pembayaran: ".$_POST['jenis_pembayaran'] ?? ''."</li>
-            <li>Agensi: ".$_POST['nama_agensi'] ?? ''."</li>
-            <li>Catatan: ".$_POST['catatan'] ?? ''."</li>";
+        $receipt = "<p>Pembayaran anda telah diterima. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada ebayar@perlis.gov.my</p><ul>
+            <li>No. Resit: ".$_POST['RECEIPT_NO']."</li>
+            <li>ID Transaksi: ".$_POST['TRANS_ID']."</li>
+            <li>Tarikh/Masa: ".$_POST['PAYMENT_DATETIME']."</li>
+            <li>Jumlah: RM ".$_POST['AMOUNT']."</li>
+            <li>Mod Pembayaran: ".strtoupper($_POST['PAYMENT_MODE'])."</li>
+            <li>ID Pembayaran: ".$_POST['PAYMENT_TRANS_ID']."</li>
+            <li>Kod Pengesahan: ".$_POST['APPROVAL_CODE']."</li>
+            <li>Bank Pembayar: ".$_POST['BUYER_BANK']."</li>
+            <li>Nama Pembayar: ".$_POST['BUYER_NAME']."</li>
+            <li>Nama: ".$_POST['nama']."</li>
+            <li>No. Kad Pengenalan: ".$_POST['nric']."</li>
+            <li>Telefon: ".$_POST['telefon']."</li>
+            <li>E-mail: ".$_POST['email']."</li>
+            <li>Jenis Pembayaran: ".$_POST['jenis_pembayaran']."</li>
+            <li>Agensi: ".$_POST['nama_agensi']."</li>
+            <li>Catatan: ".$_POST['catatan']."</li>";
             if($_POST['kod_agensi'] == '011000'):
-            $receipt .= "<li>Alamat (Harumanis): ".$_POST['alamat'] ?? ''."</li>";
+        $receipt .= "<li>Alamat (Harumanis): ".$_POST['alamat']."</li>";
             endif;
             if($_POST['kod_agensi'] == '025000'):
-            $receipt .= "<li>No. Cukai Taksiran / No. Akaun: ".$_POST['cukai'] ?? ''."</li>";
+        $receipt .= "<li>No. Cukai Taksiran / No. Akaun: ".$_POST['cukai']."</li>";
             endif;
         $receipt .= "</ul>";
 
