@@ -92,7 +92,6 @@
                                                         <li>Mod Pembayaran: <?php echo strtoupper($_POST['PAYMENT_MODE']) ?? '' ?></li>
                                                         <li>ID Pembayaran: <?php echo $_POST['PAYMENT_TRANS_ID'] ?? '' ?></li>
                                                         <li>Kod Pengesahan: <?php echo $_POST['APPROVAL_CODE'] ?? '' ?></li>
-                                                        <li>Seller Order ID: <?php echo $_POST['MERCHANT_ORDER_NO'] ?? '' ?></li>
                                                         <li>Bank Pembayar: <?php echo $_POST['BUYER_BANK'] ?? '' ?></li>
                                                         <li>Nama Pembayar: <?php echo $_POST['BUYER_NAME'] ?? '' ?></li>
                                                         <li>Nama: <?php echo $_POST['nama'] ?? '' ?></li>
@@ -135,6 +134,57 @@
                 <!-- end row -->
             </div>
         </section>
+
+        <?php
+        // prepare receipt
+        $receipt = "<ul>
+            <li>No. Resit: ".$_POST['RECEIPT_NO'] ?? ''."</li>
+            <li>ID Transaksi: ".$_POST['TRANS_ID'] ?? ''."</li>
+            <li>Tarikh/Masa: ".$_POST['PAYMENT_DATETIME'] ?? ''."</li>
+            <li>Jumlah: RM ".$_POST['AMOUNT'] ?? ''."</li>
+            <li>Mod Pembayaran: ".strtoupper($_POST['PAYMENT_MODE']) ?? ''."</li>
+            <li>ID Pembayaran: ".$_POST['PAYMENT_TRANS_ID'] ?? ''."</li>
+            <li>Kod Pengesahan: ".$_POST['APPROVAL_CODE'] ?? ''."</li>
+            <li>Bank Pembayar: ".$_POST['BUYER_BANK'] ?? ''."</li>
+            <li>Nama Pembayar: ".$_POST['BUYER_NAME'] ?? ''."</li>
+            <li>Nama: ".$_POST['nama'] ?? ''."</li>
+            <li>No. Kad Pengenalan: ".$_POST['nric'] ?? ''."</li>
+            <li>Telefon: ".$_POST['telefon'] ?? ''."</li>
+            <li>E-mail: ".$_POST['email'] ?? ''."</li>
+            <li>Jenis Pembayaran: ".$_POST['jenis_pembayaran'] ?? ''."</li>
+            <li>Agensi: ".$_POST['nama_agensi'] ?? ''."</li>
+            <li>Catatan: ".$_POST['catatan'] ?? ''."</li>";
+            if($_POST['kod_agensi'] == '011000'):
+            $receipt .= "<li>Alamat (Harumanis): ".$_POST['alamat'] ?? ''."</li>";
+            endif;
+            if($_POST['kod_agensi'] == '025000'):
+            $receipt .= "<li>No. Cukai Taksiran / No. Akaun: ".$_POST['cukai'] ?? ''."</li>";
+            endif;
+        $receipt .= "</ul>";
+
+        //send email
+        use PHPMailer\PHPMailer\PHPMailer;
+        require 'vendor/autoload.php';
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Host = 'mail.perlis.gov.my';
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;
+        $mail->Username = 'ebayar@perlis.gov.my';
+        $mail->Password = '@perlis2021';
+        $mail->setFrom('ebayar@perlis.gov.my', 'E-Bayar Perlis');
+        $mail->addReplyTo('ebayar@perlis.gov.my', 'E-Bayar Perlis');
+        $mail->addAddress($_POST['email'], $_POST['nama']);
+        $mail->Subject = 'Bukti Pembayaran';
+        $mail->msgHTML($receipt);
+        $mail->Body = 'Resit pembayaran';
+        if (!$mail->send()) {
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'The email message was sent.';
+        }
+        ?>
 
         <!-- footer start -->
         <footer class="footer">

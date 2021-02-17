@@ -79,6 +79,8 @@
                                 <?php
                                 require ('php/conn.php');
 
+                                //echo "<pre>"; var_dump($_POST); echo "</pre>";
+
                                 $service = $_POST['service'];
                                 $agency = $_POST['agency'];
                                 $agency_id = $_POST['agency_id'];
@@ -106,32 +108,39 @@
                                 ?>
 
                                 <dl class="row">
-                                    <dt class="col-md-3">Agensi</dt>
-                                    <dd class="col-md-9"><?php echo $row_agency['name'] ?? '' ?></dd>
+                                    <dt class="col-md-4">Agensi</dt>
+                                    <dd class="col-md-8"><?php echo $row_agency['name'] ?? '' ?></dd>
 
-                                    <dt class="col-md-3">Jenis Pembayaran</dt>
-                                    <dd class="col-md-9"><?php echo $row_service['name'] ?? '' ?></dd>
+                                    <dt class="col-md-4">Jenis Pembayaran</dt>
+                                    <dd class="col-md-8"><?php echo $row_service['name'] ?? '' ?></dd>
 
-                                    <dt class="col-md-3">Jumlah</dt>
-                                    <dd class="col-md-9">RM <?php echo number_format($_POST['amount'],2) ?? '' ?></dd>
+                                    <dt class="col-md-4">Jumlah</dt>
+                                    <dd class="col-md-8">RM <?php echo number_format($_POST['amount'],2) ?? '' ?></dd>
 
-                                    <dt class="col-md-3">Nama</dt>
-                                    <dd class="col-md-9"><?php echo $_POST['nama'] ?? '' ?></dd>
+                                    <dt class="col-md-4">Nama</dt>
+                                    <dd class="col-md-8"><?php echo $_POST['nama'] ?? '' ?></dd>
 
-                                    <dt class="col-md-3">No. Kad Pengenalan</dt>
-                                    <dd class="col-md-9"><?php echo $_POST['nric'] ?? '' ?></dd>
+                                    <dt class="col-md-4">No. Kad Pengenalan</dt>
+                                    <dd class="col-md-8"><?php echo $_POST['nric'] ?? '' ?></dd>
 
-                                    <dt class="col-md-3">E-mail</dt>
-                                    <dd class="col-md-9"><?php echo $_POST['email'] ?? '' ?></dd>
+                                    <dt class="col-md-4">E-mail</dt>
+                                    <dd class="col-md-8"><?php echo $_POST['email'] ?? '' ?></dd>
 
-                                    <dt class="col-md-3">Telefon</dt>
-                                    <dd class="col-md-9"><?php echo $_POST['telefon'] ?? '' ?></dd>
+                                    <dt class="col-md-4">Telefon</dt>
+                                    <dd class="col-md-8"><?php echo $_POST['telefon'] ?? '' ?></dd>
 
-                                    <dt class="col-md-3">Catatan</dt>
-                                    <dd class="col-md-9"><?php echo $_POST['catatan'] ?? '' ?></dd>
+                                    <dt class="col-md-4">Catatan</dt>
+                                    <dd class="col-md-8"><?php echo $_POST['catatan'] ?? '' ?></dd>
                                     
-                                    <?php isset($_POST['alamat']) ? '<dt class="col-md-3">Alamat Rumah (Harumanis)</dt><dd class="col-md-9">'.$_POST['alamat'].'</dd>' : '' ?>
-                                    <?php isset($_POST['cukai']) ? '<dt class="col-md-3">No. Cukai Taksiran / No. Akaun</dt><dd class="col-md-9">'.$_POST['cukai'].'</dd>' : '' ?>
+                                    <?php if($_POST['alamat'] != NULL): ?>
+                                    <dt class="col-md-4">Alamat Rumah (Harumanis)</dt>
+                                    <dd class="col-md-8"><?php echo $_POST['alamat'] ?></dd>
+                                    <?php endif; ?>
+                                    
+                                    <?php if($_POST['cukai'] != NULL): ?>
+                                    <dt class="col-md-4">No. Cukai / No. Akaun</dt>
+                                    <dd class="col-md-8"><?php echo $_POST['cukai'] ?></dd>
+                                    <?php endif; ?>
                                 </dl>
                                 
                             </div>
