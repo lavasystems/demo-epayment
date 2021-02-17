@@ -86,7 +86,7 @@
                                 $stmt_agency->execute(['agency' => $agency]); 
                                 $row_agency = $stmt_agency->fetch();
 
-                                $stmt_service = $pdo->prepare("SELECT name FROM services WHERE id = :service");
+                                $stmt_service = $pdo->prepare("SELECT name FROM services WHERE code = :service");
                                 $stmt_service->execute(['service' => $service]); 
                                 $row_service = $stmt_service->fetch();
 
