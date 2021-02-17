@@ -81,13 +81,14 @@
 
                                 $service = $_POST['service'];
                                 $agency = $_POST['agency'];
+                                $agency_id = $_POST['agency_id'];
 
                                 $stmt_agency = $pdo->prepare("SELECT name FROM agencies WHERE code = :agency");
                                 $stmt_agency->execute(['agency' => $agency]); 
                                 $row_agency = $stmt_agency->fetch();
 
-                                $stmt_service = $pdo->prepare("SELECT name FROM services WHERE code = :service");
-                                $stmt_service->execute(['service' => $service]); 
+                                $stmt_service = $pdo->prepare("SELECT name FROM services WHERE code = :service AND agency_id = :agency_id");
+                                $stmt_service->execute(['service' => $service, 'agency_id' => $agency_id]); 
                                 $row_service = $stmt_service->fetch();
 
                                 $data = $_POST;

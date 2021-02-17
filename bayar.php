@@ -102,6 +102,7 @@ if($config['fpx']['environment'] == 'Staging'){
                                             <option value="0">- Pilih Jenis Pembayaran -</option>
                                         </select>
                                         <input type="hidden" name="TRANS_ID" id="TRANS_ID">
+                                        <input type="hidden" name="agency_id" id="agency_id">
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
@@ -283,6 +284,7 @@ if($config['fpx']['environment'] == 'Staging'){
                 $('select.agency').on('change', function(){
                     $('select.service').val('');
                     var agency_code = $(this).find('option:selected').data('id');
+                    $('#agency_id').val(agency_code);
                     $.ajax({
                         type: "POST",
                         url: "php/service-list.php",
