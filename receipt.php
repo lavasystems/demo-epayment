@@ -47,7 +47,7 @@
         <!-- Navbar End -->
 
         <!-- home start -->
-        <section class="bg-home bg-gradient" id="home">
+        <section class="bg-home bg-gradient d-print-none" id="home">
             <div class="home-center">
                 <div class="home-desc-center">
                     <div class="container-fluid">
@@ -70,6 +70,7 @@
             <div class="container-fluid">
 
                 <div class="row">
+                    <pre><?php //var_dump($_POST) ?></pre>
                     <div class="col-lg-6 offset-lg-3">
                         <div class="border p-3 mb-3 rounded">
                             <h4>Bukti Pembayaran</h4>
@@ -121,7 +122,7 @@
                                             <?php endif; ?>
                                             <tr>
                                                 <td>
-                                                    <a href="javascript:window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Cetak</a>
+                                                    <a href="javascript:window.print()" class="btn btn-primary d-print-none"><i class="fa fa-print"></i> Cetak</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -182,12 +183,12 @@
         if (!$mail->send()) {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
-            echo 'The email message was sent.';
+            
         }
         ?>
 
         <!-- footer start -->
-        <footer class="footer">
+        <footer class="footer d-print-none">
             <div class="container-fluid">
 
                 <div class="row">
