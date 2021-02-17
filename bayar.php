@@ -106,19 +106,20 @@ if($config['fpx']['environment'] == 'Staging'){
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
                                         <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amoun/jumlah" required="" pattern="[-+]?[0-9]*[.,]?[0-9]+">
+
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="nama" placeholder="Nama pembayar" required="">
+                                        <input type="text" class="form-control" name="nama" placeholder="Nama pembayar" required="" pattern=".{3,}">
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label for="nric">No. Kad Pengenalan <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="nric" placeholder="XXXXXX-XX-XXXX" required="" pattern="[0-9]{6}\-[0-9]{2}\-[0-9]{4}">
+                                            <input type="text" class="form-control" name="nric" placeholder="XXXXXX-XX-XXXX" required="" pattern=".{12,}">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="telefon">No. Telefon <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="telefon" placeholder="01XXXXXXXX" required="">
+                                            <input type="text" class="form-control" name="telefon" placeholder="01XXXXXXXX" required="" pattern=".{7,}">
                                         </div>
                                     </div>
                                     <div class="form-group">
