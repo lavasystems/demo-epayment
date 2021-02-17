@@ -172,7 +172,7 @@
         $mail->Port = 587;
         $mail->SMTPAuth = true;
         $mail->Username = 'ebayar@perlis.gov.my';
-        $mail->Password = '@perlis2021';
+        $mail->Password = '[@perlis2021]';
         $mail->setFrom('ebayar@perlis.gov.my', 'E-Bayar Perlis');
         $mail->addReplyTo('ebayar@perlis.gov.my', 'E-Bayar Perlis');
         $mail->addAddress($_POST['email'], $_POST['nama']);
