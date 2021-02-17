@@ -4,10 +4,15 @@ if (!file_exists($config_filename)) {
     throw new Exception("Can't find ".$config_filename);
 }
 $config = json_decode(file_get_contents($config_filename), true);
+
 if($config['fpx']['environment'] == 'Staging'){
     $env = 'staging';
     $merchant_code = '001000STG';
 } else {
+    if($config['maintenance'] == 'on'){
+        header('Location:maintenance.php');
+        exit;
+    }
     $env = 'production';
     $merchant_code = '';
 }

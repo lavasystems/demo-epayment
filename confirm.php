@@ -144,6 +144,24 @@
                 <!-- end row -->
             </div>
         </section>
+
+        <!-- footer start -->
+        <footer class="footer">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="">&copy; 2021 Hakcipta Terpelihara Kerajaan Negeri Perlis</p>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </footer>
+        <!-- footer end -->
         
         <!-- Back to top -->    
         <a href="#" class="back-to-top" id="back-to-top"> <i class="mdi mdi-chevron-up"> </i> </a>
