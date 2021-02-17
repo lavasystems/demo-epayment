@@ -101,9 +101,9 @@
                                                         <li>Jenis Pembayaran: <?php echo $_POST['jenis_pembayaran'] ?? '' ?></li>
                                                         <li>Agensi: <?php echo $_POST['nama_agensi'] ?? '' ?></li>
                                                         <li>Catatan: <?php echo $_POST['catatan'] ?? '' ?></li>
-                                                        <?php if($_POST['kod_agensi'] == '011000'): ?>
+                                                        <?php if($_POST['alamat'] != NULL): ?>
                                                         <li>Alamat (Harumanis): <?php echo $_POST['alamat'] ?? '' ?></li>
-                                                        <?php if($_POST['kod_agensi'] == '025000'): ?>
+                                                        <?php if($_POST['cukai'] != NULL): ?>
                                                         <?php endif; ?>
                                                         <li>No. Cukai Taksiran / No. Akaun: <?php echo $_POST['cukai'] ?? '' ?></li>
                                                         <?php endif; ?>
@@ -154,10 +154,10 @@
             <li>Jenis Pembayaran: ".$_POST['jenis_pembayaran']."</li>
             <li>Agensi: ".$_POST['nama_agensi']."</li>
             <li>Catatan: ".$_POST['catatan']."</li>";
-            if($_POST['kod_agensi'] == '011000'):
+            if($_POST['alamat'] != NULL):
         $receipt .= "<li>Alamat (Harumanis): ".$_POST['alamat']."</li>";
             endif;
-            if($_POST['kod_agensi'] == '025000'):
+            if($_POST['cukai'] != NULL):
         $receipt .= "<li>No. Cukai Taksiran / No. Akaun: ".$_POST['cukai']."</li>";
             endif;
         $receipt .= "</ul>";
