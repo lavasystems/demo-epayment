@@ -105,7 +105,7 @@ if($config['fpx']['environment'] == 'Staging'){
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
-                                        <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amoun/jumlah" required="" pattern="[-+]?[0-9]*[.,]?[0-9]+">
+                                        <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amaun/jumlah" required="" pattern="[-+]?[0-9]*[.,]?[0-9]+">
 
                                     </div>
                                     <div class="form-group">
