@@ -167,7 +167,7 @@
         require 'vendor/autoload.php';
         $mail = new PHPMailer;
         $mail->isSMTP();
-        $mail->SMTPDebug = 2;
+        $mail->SMTPDebug = 0;
         $mail->Host = 'mail.perlis.gov.my';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
@@ -177,8 +177,8 @@
         $mail->addReplyTo('ebayar@perlis.gov.my', 'E-Bayar Perlis');
         $mail->addAddress($_POST['email'], $_POST['nama']);
         $mail->Subject = 'Bukti Pembayaran';
-        $mail->msgHTML($receipt);
-        $mail->Body = 'Resit pembayaran';
+        $mail->isHTML(true);
+        $mail->Body = $receipt;
         if (!$mail->send()) {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
