@@ -1,0 +1,24 @@
+{
+    "email": {
+        "from": "ebayar@perlis.gov.my",
+        "to": "fadli@reliva.com.my"
+    },
+    "endpoints": [
+        {
+            "repo": "fadlisaad/perlis",
+            "branch": "master",
+            "action": "Update Perlis git",
+            "run": "/home/bptm/git.sh"
+        }
+    ],
+    "fpx": {
+        "environment": "Staging",
+        "exchange-id": "EX00011786",
+        "url": "https://epayment-stg.perlis.gov.my/eps/request"
+    },
+    "stringer": {
+        "url": "https://epayment-stg.perlis.gov.my/stringer"
+    },
+    "cache": "5",
+    "maintenance": "on"
+}
