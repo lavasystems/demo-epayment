@@ -111,13 +111,13 @@
                                                     </ul>
                                                 </td>
                                             </tr>
-                                            <?php if($_POST['STATUS'] == 1): ?>
+                                            <?php if($_POST['STATUS'] == 1): $msg = "Pembayaran anda telah diterima. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada ebayar@perlis.gov.my"; ?>
                                             <tr>
-                                                <td><div class="alert alert-info">Pembayaran anda telah diterima. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada ebayar@perlis.gov.my</div></td>
+                                                <td><div class="alert alert-info"><?php echo $msg ?></div></td>
                                             </tr>
-                                            <?php else: ?>
+                                            <?php else: $msg = "Pembayaran anda tidak berjaya. Sila cuba semula. Jika anda mempunyai sebarang pertanyaan, sila hubungi seketariat e-Bayar Perlis di ebayar@perlis.gov.my"; ?>
                                             <tr>
-                                                <td><div class="alert alert-warning">Pembayaran anda tidak berjaya. Sila cuba semula. Jika anda mempunyai sebarang pertanyaan, sila hubungi seketariat e-Bayar Perlis.</div></td>
+                                                <td><div class="alert alert-warning"><?php echo $msg ?></div></td>
                                             </tr>
                                             <?php endif; ?>
                                             <tr>
@@ -138,7 +138,7 @@
 
         <?php
         // prepare receipt
-        $receipt = "<p>Pembayaran anda telah diterima. Jika anda mempunyai sebarang pertanyaan, sila e-mail kepada ebayar@perlis.gov.my</p><ul>
+        $receipt = "<p>".$msg."</p><ul>
             <li>No. Resit: ".$_POST['RECEIPT_NO']."</li>
             <li>ID Transaksi: ".$_POST['TRANS_ID']."</li>
             <li>Tarikh/Masa: ".$_POST['PAYMENT_DATETIME']."</li>
@@ -173,7 +173,7 @@
         $mail->Port = 587;
         $mail->SMTPAuth = true;
         $mail->Username = 'ebayar@perlis.gov.my';
-        $mail->Password = '[@perlis2021]';
+        $mail->Password = '';
         $mail->setFrom('ebayar@perlis.gov.my', 'E-Bayar Perlis');
         $mail->addReplyTo('ebayar@perlis.gov.my', 'E-Bayar Perlis');
         $mail->addAddress($_POST['email'], $_POST['nama']);
