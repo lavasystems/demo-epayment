@@ -1,64 +1,11 @@
-/*
-Template Name: Ubold - Bootstrap 4 Landing Page Tamplat
-Author: CoderThemes
-Email: coderthemes@gmail.com
-File: Main scss file
-*/
-/*******************************
-01.Helper
-02.Navbar
-03.Home
-04.Features
-05.Demo
-06.Pricing
-07.Faqs
-08.Testionial
-09.Contact
-10.Cta
-11.Footer
-12.Responsive
-********************************/
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700,900");
-@font-face {
-  font-family: "Cerebri Sans,sans-serif";
-  src: url("../fonts/cerebrisans-light.eot");
-  src: local("Cerebri-sans Light"), url("../fonts/cerebrisans-light.woff") format("woff");
-  font-weight: 300;
-}
 
-@font-face {
-  font-family: "Cerebri Sans,sans-serif";
-  src: url("../fonts/cerebrisans-regular.eot");
-  src: local("Cerebri-sans Regular"), url("../fonts/cerebrisans-regular.woff") format("woff");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Cerebri Sans,sans-serif";
-  src: url("../fonts/cerebrisans-medium.eot");
-  src: local("Cerebri-sans Medium"), url("../fonts/cerebrisans-medium.woff") format("woff");
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: "Cerebri Sans,sans-serif";
-  src: url("../fonts/cerebrisans-semibold.eot");
-  src: local("Cerebri-sans Semibold"), url("../fonts/cerebrisans-semibold.woff") format("woff");
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Cerebri Sans,sans-serif";
-  src: url("../fonts/cerebrisans-bold.eot");
-  src: local("Cerebri-sans Bold"), url("../fonts/cerebrisans-bold.woff") format("woff");
-  font-weight: 700;
-}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,900");
 
 /*******************
     1.Helper
 *******************/
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   background-color: #ffffff;
 }
@@ -69,7 +16,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Cerebri Sans,sans-serif";
+  font-family: "Open Sans", sans-serif;
 }
 
 h3 {
@@ -108,7 +55,7 @@ p {
   width: 30px;
   height: 30px;
   position: fixed;
-  bottom: 10px;
+  bottom: 120px;
   right: 20px;
   display: none;
   text-align: center;
@@ -207,7 +154,15 @@ p {
 *******************/
 .bg-home {
   position: relative;
-  padding: 100px 0px 100px 0px;
+  padding: 80px 0px 50px 0px;
+}
+
+.bg-kuning {
+  background-color: #fbd016;
+}
+
+.bg-biru {
+  background-color: #002879;
 }
 
 .home-center {
@@ -511,7 +466,7 @@ p {
     11.footer
 ********************/
 .footer {
-  padding: 60px 0px 20px 0px;
+  padding: 40px 0px 20px 0px;
 }
 
 .footer .footer-list li {

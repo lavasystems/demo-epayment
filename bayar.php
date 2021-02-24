@@ -57,7 +57,7 @@ if($config['fpx']['environment'] == 'Staging'){
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav ml-auto" id="mySidenav">
                         <li class="nav-item active">
-                            <a href="http://ebayar.perlis.gov.my" class="btn btn-secondary">Laman Utama</a>
+                            <a href="https://ebayar.perlis.gov.my" class="btn bg-biru text-white">Laman Utama</a>
                         </li>
                     </ul>
                 </div>
@@ -66,15 +66,15 @@ if($config['fpx']['environment'] == 'Staging'){
         <!-- Navbar End -->
 
         <!-- home start -->
-        <section class="bg-home bg-gradient" id="home">
+        <section class="bg-home bg-kuning" id="home">
             <div class="home-center">
                 <div class="home-desc-center">
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
                                 <div class="text-center">
-                                    <h2 class="text-white">Pembayaran</h2>
-                                    <p class="text-light">Isikan maklumat pembayaran seperti dibawah</p>
+                                    <h2>Pembayaran</h2>
+                                    <p>Isikan maklumat pembayaran seperti dibawah</p>
                                 </div>
                             </div>
                         </div>
@@ -108,6 +108,7 @@ if($config['fpx']['environment'] == 'Staging'){
                                         </select>
                                         <input type="hidden" name="TRANS_ID" id="TRANS_ID">
                                         <input type="hidden" name="agency_id" id="agency_id">
+                                        <input type="hidden" name="agency_email" id="agency_email">
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
@@ -193,7 +194,7 @@ if($config['fpx']['environment'] == 'Staging'){
                             </div>
 
                             <div class="mt-3">
-                                <button type="submit" class="btn btn-success">Pembayaran</button>
+                                <button type="submit" class="btn bg-biru text-white">Pembayaran</button>
                             </div>
 
                             </form>
@@ -205,13 +206,13 @@ if($config['fpx']['environment'] == 'Staging'){
         </section>
 
         <!-- footer start -->
-        <footer class="footer">
+        <footer class="footer bg-biru">
             <div class="container-fluid">
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <p class="">&copy; 2021 Hakcipta Terpelihara Kerajaan Negeri Perlis</p>
+                            <p class="text-white">&copy; 2021 Hakcipta Terpelihara Perbendaharaan Negeri Perlis</p>
                         </div>
                     </div>
                     <!-- end col -->
@@ -289,7 +290,9 @@ if($config['fpx']['environment'] == 'Staging'){
                 $('select.agency').on('change', function(){
                     $('select.service').val('');
                     var agency_code = $(this).find('option:selected').data('id');
+                    var agency_email = $(this).find('option:selected').data('email');
                     $('#agency_id').val(agency_code);
+                    $('#agency_email').val(agency_email);
                     $.ajax({
                         type: "POST",
                         url: "php/service-list.php",

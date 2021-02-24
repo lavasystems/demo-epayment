@@ -1,14 +1,20 @@
 <?php
-$id = $_REQUEST['id'];
+$config_filename = 'config.json';
+
+if (!file_exists($config_filename)) {
+    throw new Exception("Can't find ".$config_filename);
+}
+
+$config = json_decode(file_get_contents($config_filename), true);
+
+$id = filter_var($_REQUEST['id'], FILTER_SANITIZE_STRING);
 
 switch ($id) {
 
     case 'confirm-payment':
-
-        define("RECAPTCHA_V3_SECRET_KEY", '');
  
         if (isset($_POST['email']) && $_POST['email']) {
-            $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+            $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
         } else {
             header('location: bayar.php');
             exit;
@@ -20,7 +26,7 @@ switch ($id) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => RECAPTCHA_V3_SECRET_KEY, 'response' => $token)));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => $config['recaptcha']['secret-key'], 'response' => $token)));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
@@ -84,5 +90,4 @@ switch ($id) {
         </script>";
 		
 	break;
-
 }
