@@ -138,7 +138,7 @@ class Payment
             'buyer_name' => $_POST['BUYER_NAME']
         ];
 
-        if($_POST['STATUS'] == 1){
+        if($_POST['STATUS'] == '1'){
 
             // create payment if success
             $payment = $pdo->prepare("INSERT INTO payments (amount, status_code, status_message, payment_transaction_id, payment_datetime, buyer_name, buyer_bank, merchant_order_no) VALUES (:amount, :status_code, :status_message, :payment_transaction_id, :payment_datetime, :buyer_name, :buyer_bank, :merchant_order_no)");
