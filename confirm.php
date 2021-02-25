@@ -27,7 +27,7 @@
         <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
             <div class="container-fluid">
                 <!-- LOGO -->
-                <a class="logo text-uppercase" href="index.html">
+                <a class="logo text-uppercase" href="https://ebayar.perlis.gov.my">
                     <img src="images/logo.png" alt="" class="logo-light" height="50" />
                     <img src="images/logo.png" alt="" class="logo-dark" height="50" />
                 </a>
