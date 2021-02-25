@@ -322,12 +322,12 @@ if($config['fpx']['environment'] == 'Staging'){
                     if(agency_code == 6 && service_code == 2){
                         $('#alamat').show();
                     } else {
-                        $('#alamat').hide();
+                        $('#alamat').hide().val('');
                     }
                     if(agency_code == 16 && service_code == 1){
                         $('#cukai').show();
                     } else {
-                        $('#cukai').hide();
+                        $('#cukai').hide().val('');
                     }
                     var timestamp = '<?php echo date('Ymd') ?>';
                     $('#TRANS_ID').val(agency + '-' + service_code + '-' + timestamp);
