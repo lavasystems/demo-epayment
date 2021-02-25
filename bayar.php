@@ -135,7 +135,7 @@ if($config['fpx']['environment'] == 'Staging'){
                                     </div>
                                     <div class="form-group">
                                         <label for="catatan">Catatan</label>
-                                        <input type="text" class="form-control" name="catatan" placeholder="jika ada">
+                                        <textarea class="form-control" name="catatan" rows="5"></textarea>
                                     </div>
                                     <div class="form-group" id="alamat" style="display:none;">
                                         <label for="alamat">Alamat Rumah (Harumanis) <span class="text-danger">*</span></label>
