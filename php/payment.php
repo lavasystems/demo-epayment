@@ -99,7 +99,7 @@ class Payment
                 'jenis_pembayaran' => $data['jenis_pembayaran'],
                 'alamat' => $data['alamat'],
                 'cukai' => $data['cukai'],
-                'catatan' => $data['catatan'].
+                'catatan' => $data['catatan'],
                 'agency_email' => $data['agency_email']
             );
 
