@@ -189,9 +189,10 @@ $config = json_decode(file_get_contents($config_filename), true);
         $mail->isHTML(true);
         $mail->Body = $receipt;
         if (!$mail->send()) {
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            echo "<script>alert('Terdapat ralat dalam menghantar bukti pembayaran ini. Sila semak jika anda memasukkan alamat e-mail dengan tepat.');</script>";
+            $mail->ErrorInfo;
         } else {
-            
+            echo "<script>alert('Sila semak e-mail anda untuk mendapatkan salinan bukti pembayaran ini.');</script>";
         }
         ?>
 
