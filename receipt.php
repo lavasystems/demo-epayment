@@ -111,9 +111,9 @@ $config = json_decode(file_get_contents($config_filename), true);
                                                         <li>Catatan: <?php echo $_POST['catatan'] ?? '-' ?></li>
                                                         <?php if($_POST['alamat'] != NULL): ?>
                                                         <li>Alamat (Harumanis): <?php echo $_POST['alamat'] ?? '-' ?></li>
-                                                        <?php if($_POST['cukai'] != NULL): ?>
                                                         <?php endif; ?>
-                                                        <li>No. Cukai Tanah / No. Akaun: <?php echo $_POST['cukai'] ?? '-' ?></li>
+                                                        <?php if($_POST['cukai'] != NULL): ?>
+                                                            <li>No. Cukai Tanah / No. Akaun: <?php echo $_POST['cukai'] ?? '-' ?></li>
                                                         <?php endif; ?>
                                                     </ul>
                                                 </td>
@@ -190,7 +190,7 @@ $config = json_decode(file_get_contents($config_filename), true);
         $mail->Body = $receipt;
         if (!$mail->send()) {
             echo "<script>alert('Terdapat ralat dalam menghantar bukti pembayaran ini. Sila semak jika anda memasukkan alamat e-mail dengan tepat.');</script>";
-            $mail->ErrorInfo;
+            echo $mail->ErrorInfo;
         } else {
             echo "<script>alert('Sila semak e-mail anda untuk mendapatkan salinan bukti pembayaran ini.');</script>";
         }
