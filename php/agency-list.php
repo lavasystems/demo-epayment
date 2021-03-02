@@ -1,7 +1,7 @@
 <?php
 require ('conn.php');
 
-$stm = $pdo->query("SELECT id, code, name FROM agencies");
+$stm = $pdo->query("SELECT * FROM agencies");
 $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
 
 $list = NULL;
