@@ -46,7 +46,8 @@ class Payment
                 'jenis_pembayaran' => $data['jenis_pembayaran'],
                 'alamat' => $data['alamat'],
                 'cukai' => $data['cukai'],
-                'catatan' => $data['catatan']
+                'catatan' => $data['catatan'],
+                'agency_email' => $data['agency_email']
             );
 
             $transaction_query = $pdo->prepare("INSERT INTO transactions (service_id, amount, payment_method, payment_mode, status, payment_id) VALUES (:service_id, :amount, :payment_method, :payment_mode, :status, :payment_id)");
@@ -98,7 +99,8 @@ class Payment
                 'jenis_pembayaran' => $data['jenis_pembayaran'],
                 'alamat' => $data['alamat'],
                 'cukai' => $data['cukai'],
-                'catatan' => $data['catatan']
+                'catatan' => $data['catatan'].
+                'agency_email' => $data['agency_email']
             );
 
             # pass to FPX controller
