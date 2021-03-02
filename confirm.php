@@ -82,11 +82,11 @@
                             $agency = $_POST['agency'];
                             $agency_id = $_POST['agency_id'];
 
-                            $stmt_agency = $pdo->prepare("SELECT name FROM agencies WHERE code = :agency");
+                            $stmt_agency = $pdo->prepare("SELECT * FROM agencies WHERE code = :agency");
                             $stmt_agency->execute(['agency' => $agency]); 
                             $row_agency = $stmt_agency->fetch();
 
-                            $stmt_service = $pdo->prepare("SELECT name FROM services WHERE code = :service AND agency_id = :agency_id");
+                            $stmt_service = $pdo->prepare("SELECT * FROM services WHERE code = :service AND agency_id = :agency_id");
                             $stmt_service->execute(['service' => $service, 'agency_id' => $agency_id]); 
                             $row_service = $stmt_service->fetch();
 
@@ -101,6 +101,7 @@
                             }
                             echo "<input type='hidden' name='nama_agensi' value='".$row_agency['name']."'>";
                             echo "<input type='hidden' name='jenis_pembayaran' value='".$row_service['name']."'>";
+                            echo "<input type='hidden' name='agency_email' value='".$row_agency['email']."'>";
                             echo "</form>";
                             ?>
 
