@@ -313,7 +313,7 @@ if($config['fpx']['environment'] == 'Staging'){
 
                     if(environment == 'staging'){
                         var agency = '<?php echo $merchant_code ?>';
-                        var agency_email = '<?php echo $config['email']['from'] ?>';
+                        var agency_email = '<?php echo $config['email']['username'] ?>';
                         $('#agency_email').val(agency_email);
                     } else {
                         var agency = $('select.agency').find('option:selected').val();
