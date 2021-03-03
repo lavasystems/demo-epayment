@@ -70,24 +70,31 @@ switch ($id) {
 	break;
 
 	case 'response':
-	
-		$data = $_POST;
 
-		echo "<form id='autosubmit' action='receipt.php' method='post'>";
-        if (is_array($data) || is_object($data))
-        {
-            foreach ($data as $key => $val) {
-                echo "<input type='hidden' name='".$key."' value='".htmlspecialchars($val)."'>";
-            }
-        }
-        echo "</form>";
-        echo "
-        <script type='text/javascript'>
-            function submitForm() {
-                document.getElementById('autosubmit').submit();
-            }
-            window.onload = submitForm;
-        </script>";
+        require_once('php/payment.php');
+        $payment = new Payment();
+
+        $data = $_POST;
+
+        return $payment->response($data);
+	
+		// $data = $_POST;
+
+		// echo "<form id='autosubmit' action='receipt.php' method='post'>";
+  //       if (is_array($data) || is_object($data))
+  //       {
+  //           foreach ($data as $key => $val) {
+  //               echo "<input type='hidden' name='".$key."' value='".htmlspecialchars($val)."'>";
+  //           }
+  //       }
+  //       echo "</form>";
+  //       echo "
+  //       <script type='text/javascript'>
+  //           function submitForm() {
+  //               document.getElementById('autosubmit').submit();
+  //           }
+  //           window.onload = submitForm;
+  //       </script>";
 		
 	break;
 }
