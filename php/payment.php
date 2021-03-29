@@ -1,6 +1,5 @@
 <?php
 require ('stringer.php');
-require ('conn.php');
 
 class Payment
 {
@@ -19,6 +18,8 @@ class Payment
     # process online payment
     public function process($data)
     {
+        require ('conn.php');
+
         if(isset($data)){
 
             if($this->config['fpx']['environment'] == 'Staging'){
@@ -120,6 +121,8 @@ class Payment
 
     public function response()
     {
+        require ('conn.php');
+        
         $input = $_POST;
 
         $fpx_data = [
