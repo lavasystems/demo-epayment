@@ -12,11 +12,6 @@ $purifier = new HTMLPurifier();
 
 if(isset($_POST['payload'])) {
     if($_POST['payload'] == base64_decode('ZWI0eUFy')) {
-        continue;
-    } else {
-        die('Go away you nasty bot!');
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -256,3 +251,9 @@ if(isset($_POST['payload'])) {
         <script src="js/app.js"></script>
     </body>
 </html>
+<?php
+    } else {
+        die('Go away you nasty bot!');
+    }
+}
+?>
