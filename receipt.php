@@ -8,6 +8,7 @@ $config = json_decode(file_get_contents($config_filename), true);
 require 'vendor/autoload.php';
 //send email
 use PHPMailer\PHPMailer\PHPMailer;
+require_once 'vendor/ezyang/htmpurifier/library/HTMLPurifier.auto.php';
 $purifier = new HTMLPurifier();
 
 if(isset($_POST['payload'])) {
