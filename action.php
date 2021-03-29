@@ -64,6 +64,8 @@ switch ($id) {
 		$payment = new Payment();
 
 		$data = $_POST;
+    $data = trim($data);
+    $data = htmlspecialchars($data);
 
 		return $payment->process($data);
 		
@@ -77,24 +79,6 @@ switch ($id) {
         $data = $_POST;
 
         return $payment->response($data);
-	
-		// $data = $_POST;
-
-		// echo "<form id='autosubmit' action='receipt.php' method='post'>";
-  //       if (is_array($data) || is_object($data))
-  //       {
-  //           foreach ($data as $key => $val) {
-  //               echo "<input type='hidden' name='".$key."' value='".htmlspecialchars($val)."'>";
-  //           }
-  //       }
-  //       echo "</form>";
-  //       echo "
-  //       <script type='text/javascript'>
-  //           function submitForm() {
-  //               document.getElementById('autosubmit').submit();
-  //           }
-  //           window.onload = submitForm;
-  //       </script>";
 		
 	break;
 }

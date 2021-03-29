@@ -168,6 +168,7 @@ class Payment
         foreach ($input as $a => $b) {
             echo '<input type="hidden" name="'.htmlentities($a).'" value="'.filter_var($b, FILTER_SANITIZE_STRING).'">';
         }
+        echo '<input type="hidden" name="payload" value="'.base64_encode('eb4yAr').'">';
         echo "</form>";
         echo "<script type=\"text/javascript\">
             document.getElementById('receipt').submit();

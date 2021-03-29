@@ -4,6 +4,14 @@ if (!file_exists($config_filename)) {
     throw new Exception("Can't find ".$config_filename);
 }
 $config = json_decode(file_get_contents($config_filename), true);
+
+require 'vendor/autoload.php';
+//send email
+use PHPMailer\PHPMailer\PHPMailer;
+$purifier = new HTMLPurifier();
+
+if(isset($_POST['payload'])) {
+    if($_POST['payload'] == base64_decode('ZWI0eUFy')) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,8 +84,26 @@ $config = json_decode(file_get_contents($config_filename), true);
         <section class="section">
             <div class="container-fluid">
 
+                <?php if(isset($_POST['TRANS_ID']) && isset($_POST['PAYMENT_DATETIME']) && isset($_POST['AMOUNT']) && isset($_POST['PAYMENT_TRANS_ID'])):
+                    $trans_id = $purifier->purify($_POST['TRANS_ID']);
+                    $receipt_no = $purifier->purify($_POST['RECEIPT_NO']);
+                    $payment_datetime = $purifier->purify($_POST['PAYMENT_DATETIME']);
+                    $amount = $purifier->purify($_POST['AMOUNT']);
+                    $payment_mode = $purifier->purify($_POST['PAYMENT_MODE']);
+                    $payment_trans_id = $purifier->purify($_POST['PAYMENT_TRANS_ID']);
+                    $approval_code = $purifier->purify($_POST['APPROVAL_CODE']);
+                    $buyer_bank = $purifier->purify($_POST['BUYER_BANK']);
+                    $buyer_name = $purifier->purify($_POST['BUYER_NAME']);
+                    $nama = $purifier->purify($_POST['nama']);
+                    $nric = $purifier->purify($_POST['nric']);
+                    $telefon = $purifier->purify($_POST['telefon']);
+                    $email = $purifier->purify($_POST['email']);
+                    $jenis_pembayaran = $purifier->purify($_POST['jenis_pembayaran']);
+                    $nama_agensi = $purifier->purify($_POST['nama_agensi']);
+                    $catatan = $purifier->purify($_POST['catatan']);
+                ?>
+
                 <div class="row">
-                    <pre><?php //var_dump($_POST) ?></pre>
                     <div class="col-lg-6 offset-lg-3">
                         <div class="border p-3 mb-3 rounded">
                             <h4>Bukti Pembayaran</h4>
@@ -93,22 +119,22 @@ $config = json_decode(file_get_contents($config_filename), true);
                                             <tr>
                                                 <td>
                                                     <ul>
-                                                        <li>No. Resit: <?php echo $_POST['RECEIPT_NO'] ?? '-' ?></li>
-                                                        <li>ID Transaksi: <?php echo $_POST['TRANS_ID'] ?? '-' ?></li>
-                                                        <li>Tarikh/Masa: <?php echo $_POST['PAYMENT_DATETIME'] ?? '-' ?></li>
-                                                        <li>Jumlah: RM <?php echo $_POST['AMOUNT'] ?? '-' ?></li>
-                                                        <li>Mod Pembayaran: <?php echo strtoupper($_POST['PAYMENT_MODE']) ?? '-' ?></li>
-                                                        <li>ID Pembayaran: <?php echo $_POST['PAYMENT_TRANS_ID'] ?? '-' ?></li>
-                                                        <li>Kod Pengesahan: <?php echo $_POST['APPROVAL_CODE'] ?? '-' ?></li>
-                                                        <li>Bank Pembayar: <?php echo $_POST['BUYER_BANK'] ?? '-' ?></li>
-                                                        <li>Nama Pembayar: <?php echo $_POST['BUYER_NAME'] ?? '-' ?></li>
-                                                        <li>Nama: <?php echo $_POST['nama'] ?? '-' ?></li>
-                                                        <li>No. Kad Pengenalan: <?php echo $_POST['nric'] ?? '-' ?></li>
-                                                        <li>Telefon: <?php echo $_POST['telefon'] ?? '-' ?></li>
-                                                        <li>E-mail: <?php echo $_POST['email'] ?? '-' ?></li>
-                                                        <li>Jenis Pembayaran: <?php echo $_POST['jenis_pembayaran'] ?? '-' ?></li>
-                                                        <li>Agensi: <?php echo $_POST['nama_agensi'] ?? '-' ?></li>
-                                                        <li>Catatan: <?php echo $_POST['catatan'] ?? '-' ?></li>
+                                                        <li>No. Resit: <?php echo $receipt_no ?? '-' ?></li>
+                                                        <li>ID Transaksi: <?php echo $trans_id ?? '-' ?></li>
+                                                        <li>Tarikh/Masa: <?php echo $payment_datetime ?? '-' ?></li>
+                                                        <li>Jumlah: RM <?php echo $amount ?? '-' ?></li>
+                                                        <li>Mod Pembayaran: <?php echo strtoupper($payment_mode) ?? '-' ?></li>
+                                                        <li>ID Pembayaran: <?php echo $payment_trans_id ?? '-' ?></li>
+                                                        <li>Kod Pengesahan: <?php echo $approval_code ?? '-' ?></li>
+                                                        <li>Bank Pembayar: <?php echo $buyer_bank ?? '-' ?></li>
+                                                        <li>Nama Pembayar: <?php echo $buyer_name ?? '-' ?></li>
+                                                        <li>Nama: <?php echo $nama ?? '-' ?></li>
+                                                        <li>No. Kad Pengenalan: <?php echo $nric ?? '-' ?></li>
+                                                        <li>Telefon: <?php echo $telefon ?? '-' ?></li>
+                                                        <li>E-mail: <?php echo $email ?? '-' ?></li>
+                                                        <li>Jenis Pembayaran: <?php echo $jenis_pembayaran ?? '-' ?></li>
+                                                        <li>Agensi: <?php echo $nama_agensi ?? '-' ?></li>
+                                                        <li>Catatan: <?php echo $catatan ?? '-' ?></li>
                                                         <?php if($_POST['alamat'] != NULL): ?>
                                                         <li>Alamat (Harumanis): <?php echo $_POST['alamat'] ?? '-' ?></li>
                                                         <?php endif; ?>
@@ -140,61 +166,61 @@ $config = json_decode(file_get_contents($config_filename), true);
                     </div>
                 </div>
                 <!-- end row -->
+
+                <?php
+                // prepare receipt
+                $receipt = "<p>".$msg."</p><ul>
+                    <li>No. Resit: ".$receipt_no."</li>
+                    <li>ID Transaksi: ".trans_id."</li>
+                    <li>Tarikh/Masa: ".$payment_datetime."</li>
+                    <li>Jumlah: RM ".$amount."</li>
+                    <li>Mod Pembayaran: ".strtoupper($payment_mode)."</li>
+                    <li>ID Pembayaran: ".$payment_trans_id."</li>
+                    <li>Kod Pengesahan: ".$approval_code."</li>
+                    <li>Bank Pembayar: ".$buyer_bank."</li>
+                    <li>Nama Pembayar: ".$buyer_name."</li>
+                    <li>Nama: ".$nama."</li>
+                    <li>No. Kad Pengenalan: ".$_POST['nric']."</li>
+                    <li>Telefon: ".$telefon."</li>
+                    <li>E-mail: ".$email."</li>
+                    <li>Jenis Pembayaran: ".$jenis_pembayaran."</li>
+                    <li>Agensi: ".$nama_agensi."</li>
+                    <li>Catatan: ".$catatan."</li>";
+                    if($_POST['alamat'] != NULL):
+                $receipt .= "<li>Alamat (Harumanis): ".$_POST['alamat']."</li>";
+                    endif;
+                    if($_POST['cukai'] != NULL):
+                $receipt .= "<li>No. Cukai Tanah / No. Akaun: ".$_POST['cukai']."</li>";
+                    endif;
+                $receipt .= "</ul>";
+                
+                $mail = new PHPMailer;
+                $mail->isSMTP();
+                $mail->SMTPDebug = $config['email']['debug'];
+                $mail->Host = $config['email']['host'];
+                $mail->Port = $config['email']['port'];
+                $mail->SMTPAuth = true;
+                $mail->Username = $config['email']['username'];
+                $mail->Password = $config['email']['password'];
+                $mail->setFrom($config['email']['username'], $config['email']['from']);
+                $mail->addReplyTo($config['email']['username'], $config['email']['from']);
+                $mail->addAddress($email, $nama);
+                $mail->addCC($_POST['agency_email']);
+                $mail->Subject = 'Status Pembayaran di E-Bayar Perlis';
+                $mail->isHTML(true);
+                $mail->Body = $receipt;
+                if (!$mail->send()) {
+                    echo "<script>alert('Terdapat ralat dalam menghantar bukti pembayaran ini. Sila semak jika anda memasukkan alamat e-mail dengan tepat.');</script>";
+                    echo $mail->ErrorInfo;
+                } else {
+                    echo "<script>alert('Sila semak e-mail anda untuk mendapatkan salinan bukti pembayaran ini.');</script>";
+                }
+            else:
+                echo "<div class='alert alert-danger'>No data received</div>";
+            endif;
+                ?>
             </div>
         </section>
-
-        <?php
-        // prepare receipt
-        $receipt = "<p>".$msg."</p><ul>
-            <li>No. Resit: ".$_POST['RECEIPT_NO']."</li>
-            <li>ID Transaksi: ".$_POST['TRANS_ID']."</li>
-            <li>Tarikh/Masa: ".$_POST['PAYMENT_DATETIME']."</li>
-            <li>Jumlah: RM ".$_POST['AMOUNT']."</li>
-            <li>Mod Pembayaran: ".strtoupper($_POST['PAYMENT_MODE'])."</li>
-            <li>ID Pembayaran: ".$_POST['PAYMENT_TRANS_ID']."</li>
-            <li>Kod Pengesahan: ".$_POST['APPROVAL_CODE']."</li>
-            <li>Bank Pembayar: ".$_POST['BUYER_BANK']."</li>
-            <li>Nama Pembayar: ".$_POST['BUYER_NAME']."</li>
-            <li>Nama: ".$_POST['nama']."</li>
-            <li>No. Kad Pengenalan: ".$_POST['nric']."</li>
-            <li>Telefon: ".$_POST['telefon']."</li>
-            <li>E-mail: ".$_POST['email']."</li>
-            <li>Jenis Pembayaran: ".$_POST['jenis_pembayaran']."</li>
-            <li>Agensi: ".$_POST['nama_agensi']."</li>
-            <li>Catatan: ".$_POST['catatan']."</li>";
-            if($_POST['alamat'] != NULL):
-        $receipt .= "<li>Alamat (Harumanis): ".$_POST['alamat']."</li>";
-            endif;
-            if($_POST['cukai'] != NULL):
-        $receipt .= "<li>No. Cukai Tanah / No. Akaun: ".$_POST['cukai']."</li>";
-            endif;
-        $receipt .= "</ul>";
-
-        //send email
-        use PHPMailer\PHPMailer\PHPMailer;
-        require 'vendor/autoload.php';
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        $mail->SMTPDebug = $config['email']['debug'];
-        $mail->Host = $config['email']['host'];
-        $mail->Port = $config['email']['port'];
-        $mail->SMTPAuth = true;
-        $mail->Username = $config['email']['username'];
-        $mail->Password = $config['email']['password'];
-        $mail->setFrom($config['email']['username'], $config['email']['from']);
-        $mail->addReplyTo($config['email']['username'], $config['email']['from']);
-        $mail->addAddress($_POST['email'], $_POST['nama']);
-        $mail->addCC($_POST['agency_email']);
-        $mail->Subject = 'Status Pembayaran di E-Bayar Perlis';
-        $mail->isHTML(true);
-        $mail->Body = $receipt;
-        if (!$mail->send()) {
-            echo "<script>alert('Terdapat ralat dalam menghantar bukti pembayaran ini. Sila semak jika anda memasukkan alamat e-mail dengan tepat.');</script>";
-            echo $mail->ErrorInfo;
-        } else {
-            echo "<script>alert('Sila semak e-mail anda untuk mendapatkan salinan bukti pembayaran ini.');</script>";
-        }
-        ?>
 
         <!-- footer start -->
         <footer class="footer d-print-none bg-biru">
@@ -225,3 +251,7 @@ $config = json_decode(file_get_contents($config_filename), true);
         <script src="js/app.js"></script>
     </body>
 </html>
+<?php
+} else {
+    die('Go away you nasty bot!');
+} ?>
