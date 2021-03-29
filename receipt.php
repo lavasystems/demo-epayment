@@ -8,11 +8,10 @@ $config = json_decode(file_get_contents($config_filename), true);
 require 'vendor/autoload.php';
 //send email
 use PHPMailer\PHPMailer\PHPMailer;
-require_once 'vendor/ezyang/htmlpurifier/library/HTMLPurifier.auto.php';
 $purifier = new HTMLPurifier();
 
 if(isset($_POST['payload'])) {
-    if($_POST['payload'] == base64_decode('ZWI0eUFy')) {
+    if($_POST['payload'] == 'ZWI0eUFy') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -172,7 +171,7 @@ if(isset($_POST['payload'])) {
                 // prepare receipt
                 $receipt = "<p>".$msg."</p><ul>
                     <li>No. Resit: ".$receipt_no."</li>
-                    <li>ID Transaksi: ".trans_id."</li>
+                    <li>ID Transaksi: ".$trans_id."</li>
                     <li>Tarikh/Masa: ".$payment_datetime."</li>
                     <li>Jumlah: RM ".$amount."</li>
                     <li>Mod Pembayaran: ".strtoupper($payment_mode)."</li>
