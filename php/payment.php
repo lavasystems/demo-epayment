@@ -122,7 +122,7 @@ class Payment
     public function response()
     {
         require ('conn.php');
-        
+
         $input = $_POST;
 
         $fpx_data = [
@@ -152,13 +152,16 @@ class Payment
         $payment->bindValue(":buyer_bank", $fpx_data['buyer_bank']);
         $payment->bindValue(":merchant_order_no", $fpx_data['merchant_order_no']);
         $payment->execute();
-        $payment_id = $payment->lastInsertId();
+        $payment_id = $pdo->lastInsertId();
+
+        $receipt_no = isset($_POST['RECEIPT_NO']) ? $_POST['RECEIPT_NO'] : '';
+        $payment_id = isset($payment_id) ? $payment_id : '';
 
         // update transaction table
         $transaction = $pdo->prepare("UPDATE transactions SET status = :status, receipt_no = :receipt_no, payment_id = :payment_id");
         $transaction->bindValue(":status", $_POST['STATUS']);
-        $transaction->bindParam(":receipt_no", isset($_POST['RECEIPT_NO']) ? $_POST['RECEIPT_NO'] : '');
-        $transaction->bindParam(":payment_id", isset($payment_id) ? $payment_id : '');
+        $transaction->bindParam(":receipt_no", $receipt_no);
+        $transaction->bindParam(":payment_id", $payment_id);
         $transaction->execute();
 
         // redirect to receipt page
