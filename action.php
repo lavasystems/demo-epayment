@@ -64,8 +64,6 @@ switch ($id) {
 		$payment = new Payment();
 
 		$data = $_POST;
-    $data = trim($data);
-    $data = htmlspecialchars($data);
 
 		return $payment->process($data);
 		
