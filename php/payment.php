@@ -140,21 +140,17 @@ class Payment
             'buyer_name' => $_POST['BUYER_NAME']
         ];
 
-        if($_POST['STATUS'] == '1'){
-
-            // create payment if success
-            $payment = $pdo->prepare("INSERT INTO payments (amount, status_code, status_message, payment_transaction_id, payment_datetime, buyer_name, buyer_bank, merchant_order_no) VALUES (:amount, :status_code, :status_message, :payment_transaction_id, :payment_datetime, :buyer_name, :buyer_bank, :merchant_order_no)");
-            $payment->bindValue(":amount", $fpx_data['amount']);
-            $payment->bindValue(":status_code", $fpx_data['status_code']);
-            $payment->bindValue(":status_message", $fpx_data['status_message']);
-            $payment->bindValue(":payment_transaction_id", $fpx_data['payment_transaction_id']);
-            $payment->bindValue(":payment_datetime", $fpx_data['payment_datetime']);
-            $payment->bindValue(":buyer_name", $fpx_data['buyer_name']);
-            $payment->bindValue(":buyer_bank", $fpx_data['buyer_bank']);
-            $payment->bindValue(":merchant_order_no", $fpx_data['merchant_order_no']);
-            $payment->execute();
-            $payment_id = $payment->lastInsertId();
-        }
+        $payment = $pdo->prepare("INSERT INTO payments (amount, status_code, status_message, payment_transaction_id, payment_datetime, buyer_name, buyer_bank, merchant_order_no) VALUES (:amount, :status_code, :status_message, :payment_transaction_id, :payment_datetime, :buyer_name, :buyer_bank, :merchant_order_no)");
+        $payment->bindValue(":amount", $fpx_data['amount']);
+        $payment->bindValue(":status_code", $fpx_data['status_code']);
+        $payment->bindValue(":status_message", $fpx_data['status_message']);
+        $payment->bindValue(":payment_transaction_id", $fpx_data['payment_transaction_id']);
+        $payment->bindValue(":payment_datetime", $fpx_data['payment_datetime']);
+        $payment->bindValue(":buyer_name", $fpx_data['buyer_name']);
+        $payment->bindValue(":buyer_bank", $fpx_data['buyer_bank']);
+        $payment->bindValue(":merchant_order_no", $fpx_data['merchant_order_no']);
+        $payment->execute();
+        $payment_id = $payment->lastInsertId();
 
         // update transaction table
         $transaction = $pdo->prepare("UPDATE transactions SET status = :status, receipt_no = :receipt_no, payment_id = :payment_id");
