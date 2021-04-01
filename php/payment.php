@@ -165,7 +165,7 @@ class Payment
         $transaction->execute();
 
         // redirect to receipt page
-        echo "<form id=\"receipt\" action=\"receipt.php\" method=\"post\">";
+        echo "<form id=\"receipt\" action=\"resit.php\" method=\"post\">";
         foreach ($input as $a => $b) {
             echo '<input type="hidden" name="'.htmlentities($a).'" value="'.filter_var($b, FILTER_SANITIZE_STRING).'">';
         }
