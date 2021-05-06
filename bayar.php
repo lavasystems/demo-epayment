@@ -154,7 +154,7 @@ if($config['fpx']['environment'] == 'Staging'){
                         <!-- Credit/Debit Card box-->
                         <div class="border p-3 mb-3 rounded">
 
-                            <h4>Perbankan Internet</h4>
+                            <h4>Perbankan Internet dan Kad Kredit/Debit</h4>
                             <p class="mb-3 pt-1">Pembayaran menggunakan akaun bank anda</p>
 
                             <div class="alert alert-info">Individu: Minimum RM 1.00 dan maksimum RM 30,000.00<br>Korporat: Minimum RM 2.00 dan maksimum RM 1,000,000.00</div>
@@ -184,11 +184,21 @@ if($config['fpx']['environment'] == 'Staging'){
                                 </div>
                             </div>
                             
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="agree" name="agree" required="">
                                         <label class="custom-control-label" for="agree">Dengan memilih mod pembayaran ini, anda bersetuju dengan <a href="https://www.mepsfpx.com.my/FPXMain/termsAndConditions.jsp" target="_blank">terma dan syarat</a> FPX.</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="mb-3 pt-1">Pembayaran menggunakan kad kredit/debit</p>
+                            <div class="row mb-3">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="migs" name="payment_mode" class="custom-control-input" value="migs">
+                                        <label class="custom-control-label" for="migs">Kad Kredit/Debit</label>
                                     </div>
                                 </div>
                             </div>
