@@ -28,11 +28,19 @@ class Payment
                 $merchant_code = $data['agency'];
             }
 
+            $payment_mode = $data['payment_mode'];
+
+            if($payment_mode == 'fpx' || $payment_mode == 'fpx1'){
+                $payment_method = 'FPX';
+            } else {
+                $payment_method = 'Kad Kredit/Debit';
+            }
+
             $transaction_data = array(
                 'service_id' => $data['service'],
                 'amount' => $data['amount'],
-                'payment_method' => 'FPX',
-                'payment_mode' => 'fpx',
+                'payment_method' => $payment_method,
+                'payment_mode' => $payment_mode,
                 'status' => '2',
                 'payment_id' => '0'
             );
