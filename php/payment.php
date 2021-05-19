@@ -22,12 +22,7 @@ class Payment
 
         if(isset($data)){
 
-            if($this->config['fpx']['environment'] == 'Staging'){
-                $merchant_code = '001000STG';
-            } else {
-                $merchant_code = $data['agency'];
-            }
-
+            $merchant_code = $this->config['fpx']['merchant-code'];
             $payment_mode = $data['payment_mode'];
 
             if($payment_mode == 'fpx' || $payment_mode == 'fpx1'){
@@ -37,7 +32,7 @@ class Payment
             }
 
             $transaction_data = array(
-                'service_id' => $data['service'],
+                'service_id' => 1,
                 'amount' => $data['amount'],
                 'payment_method' => $payment_method,
                 'payment_mode' => $payment_mode,
@@ -50,12 +45,7 @@ class Payment
                 'nric' => $data['nric'],
                 'telefon' => $data['telefon'],
                 'email' => $data['email'],
-                'nama_agensi' => $data['nama_agensi'],
-                'jenis_pembayaran' => $data['jenis_pembayaran'],
-                'alamat' => $data['alamat'],
-                'cukai' => $data['cukai'],
                 'catatan' => $data['catatan'],
-                'agency_email' => $data['agency_email']
             );
 
             $transaction_query = $pdo->prepare("INSERT INTO transactions (service_id, amount, payment_method, payment_mode, status, payment_id) VALUES (:service_id, :amount, :payment_method, :payment_mode, :status, :payment_id)");
@@ -89,7 +79,7 @@ class Payment
             $checksum = $encrypt->getChecksum($checksum_data);
 
             $fpx_data = array(
-                'TRANS_ID' => $data['TRANS_ID'].'-'.$transaction_id,
+                'TRANS_ID' => $transaction_id,
                 'AMOUNT' => $transaction_data['amount'],
                 'PAYEE_NAME' => $transaction_extra['nama'],
                 'PAYEE_EMAIL' => $transaction_extra['email'],
@@ -102,13 +92,7 @@ class Payment
                 'nama' => $data['nama'],
                 'nric' => $data['nric'],
                 'telefon' => $data['telefon'],
-                'kod_agensi' => $data['agency'],
-                'nama_agensi' => $data['nama_agensi'],
-                'jenis_pembayaran' => $data['jenis_pembayaran'],
-                'alamat' => $data['alamat'],
-                'cukai' => $data['cukai'],
                 'catatan' => $data['catatan'],
-                'agency_email' => $data['agency_email']
             );
 
             # pass to FPX controller

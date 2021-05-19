@@ -21,7 +21,7 @@ if($config['fpx']['environment'] == 'Staging'){
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Bayaran | Gerbang Pembayaran Negeri Perlis</title>
+        <title>E-Payment Demo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Gerbang Pembayaran Perlis" name="description" />
         <meta content="Fadli Saad" name="author" />
@@ -42,38 +42,15 @@ if($config['fpx']['environment'] == 'Staging'){
 
     <body>
 
-        <!--Navbar Start-->
-        <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
-            <div class="container-fluid">
-                <!-- LOGO -->
-                <a class="logo text-uppercase" href="https://ebayar.perlis.gov.my">
-                    <img src="images/logo.png" alt="" class="logo-light" height="50" />
-                    <img src="images/logo.png" alt="" class="logo-dark" height="50" />
-                </a>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="mdi mdi-menu"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav ml-auto" id="mySidenav">
-                        <li class="nav-item active">
-                            <a href="https://ebayar.perlis.gov.my" class="btn bg-biru text-white">Laman Utama</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Navbar End -->
-
         <!-- home start -->
-        <section class="bg-home bg-kuning" id="home">
+        <section class="bg-home bg-biru" id="home">
             <div class="home-center">
                 <div class="home-desc-center">
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
                                 <div class="text-center">
-                                    <h2>Pembayaran</h2>
+                                    <h2 class="text-white">Pembayaran</h2>
                                     <p>Isikan maklumat pembayaran seperti dibawah</p>
                                 </div>
                             </div>
@@ -96,24 +73,8 @@ if($config['fpx']['environment'] == 'Staging'){
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="payment_type">Agensi <span class="text-danger">*</span></label>
-                                        <select name="agency" id="agency" class="custom-select agency" required="">
-                                            <option value="0">- Pilih Agensi -</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="payment_type">Jenis Pembayaran <span class="text-danger">*</span></label>
-                                        <select name="service" id="service" class="custom-select service" required="">
-                                            <option value="0">- Pilih Jenis Pembayaran -</option>
-                                        </select>
-                                        <input type="hidden" name="TRANS_ID" id="TRANS_ID">
-                                        <input type="hidden" name="agency_id" id="agency_id">
-                                        <input type="hidden" name="agency_email" id="agency_email">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
                                         <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amaun/jumlah" required="" pattern="[-+]?[0-9]*[.,]?[0-9]+">
-
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama <span class="text-danger">*</span></label>
@@ -136,14 +97,6 @@ if($config['fpx']['environment'] == 'Staging'){
                                     <div class="form-group">
                                         <label for="catatan">Catatan</label>
                                         <textarea class="form-control" name="catatan" rows="5"></textarea>
-                                    </div>
-                                    <div class="form-group" id="alamat" style="display:none;">
-                                        <label for="alamat">Alamat Rumah (Harumanis) <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="alamat" placeholder="Alamat penghantaran (Harumanis)">
-                                    </div>
-                                    <div class="form-group" id="cukai" style="display:none;">
-                                        <label for="cukai">No. Cukai Tanah / No. Akaun <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="cukai" placeholder="No. Cukai Tanah / No. Akaun">
                                     </div>
                                     <small id="emailHelp" class="form-text text-muted">Ruangan bertanda * adalah wajib diisi.</small>
                                 </div>
@@ -222,7 +175,7 @@ if($config['fpx']['environment'] == 'Staging'){
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <p class="text-white">&copy; 2021 Hakcipta Terpelihara Perbendaharaan Negeri Perlis</p>
+                            <p class="text-white">&copy; 2021 Hakcipta Terpelihara</p>
                         </div>
                     </div>
                     <!-- end col -->
@@ -242,7 +195,6 @@ if($config['fpx']['environment'] == 'Staging'){
 
         <!-- custom js -->
         <script src="js/app.js"></script>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LfUYlgaAAAAAOUaTl007VxYInWIDFb1nHBHpt1G"></script>
         <script>
 
             $('#fpx').on('change', function() {
@@ -274,78 +226,6 @@ if($config['fpx']['environment'] == 'Staging'){
                     }
                 });
             }
-
-            $('#form-bayar').submit(function(event) {
-                event.preventDefault();
-         
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('6LfUYlgaAAAAAOUaTl007VxYInWIDFb1nHBHpt1G', {action: 'submit_payment'}).then(function(token) {
-                        $('#form-bayar').prepend('<input type="hidden" name="token" value="' + token + '">');
-                        $('#form-bayar').prepend('<input type="hidden" name="action" value="submit_payment">');
-                        $('#form-bayar').unbind('submit').submit();
-                    });;
-                });
-            });
-
-            $(document).ready(function(){
-
-                $.ajax({
-                    type: "GET",
-                    url: "php/agency-list.php",
-                    success: function(data) {
-                        $('#agency').append(data);
-                    }
-                });
-
-                $('select.agency').on('change', function(){
-                    $('select.service').val('');
-                    var agency_code = $(this).find('option:selected').data('id');
-                    var agency_email = $(this).find('option:selected').data('email');
-                    $('#agency_id').val(agency_code);
-                    $('#agency_email').val(agency_email);
-                    $.ajax({
-                        type: "POST",
-                        url: "php/service-list.php",
-                        data: {
-                            'agency_id' : agency_code
-                        },
-                        success: function(data) {
-                            $('#service').find('option').not('[value=0]').remove();
-                            $('#service').append(data);
-                        }
-                    });
-                });
-
-                $('select.service').on('change', function(){
-
-                    var environment = '<?php echo $env ?>';
-                    var agency_code = $('select.agency').find('option:selected').data('id');
-
-                    if(environment == 'staging'){
-                        var agency = '<?php echo $merchant_code ?>';
-                        var agency_email = '<?php echo $config['email']['username'] ?>';
-                        $('#agency_email').val(agency_email);
-                    } else {
-                        var agency = $('select.agency').find('option:selected').val();
-                    }
-                    
-                    var service_code = $(this).find('option:selected').val();
-
-                    if(agency_code == 6 && service_code == 2){
-                        $('#alamat').show();
-                    } else {
-                        $('#alamat').hide().val('');
-                    }
-                    if(agency_code == 16 && service_code == 1){
-                        $('#cukai').show();
-                    } else {
-                        $('#cukai').hide().val('');
-                    }
-                    var timestamp = '<?php echo date('Ymd') ?>';
-                    $('#TRANS_ID').val(agency + '-' + service_code + '-' + timestamp);
-                });
-
-            });
         </script>
     </body>
 

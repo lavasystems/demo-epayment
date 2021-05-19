@@ -22,7 +22,7 @@ if(isset($_POST['payload'])) {
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Bukti Pembayaran | Gerbang Pembayaran Negeri Perlis</title>
+        <title>Bukti Pembayaran</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Gerbang Pembayaran Perlis" name="description" />
         <meta content="Fadli Saad" name="author" />
@@ -43,31 +43,8 @@ if(isset($_POST['payload'])) {
 
     <body>
 
-        <!--Navbar Start-->
-        <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
-            <div class="container-fluid">
-                <!-- LOGO -->
-                <a class="logo text-uppercase" href="https://ebayar.perlis.gov.my">
-                    <img src="images/logo.png" alt="" class="logo-light" height="50" />
-                    <img src="images/logo.png" alt="" class="logo-dark" height="50" />
-                </a>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="mdi mdi-menu"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav ml-auto" id="mySidenav">
-                        <li class="nav-item active">
-                            <a href="https://ebayar.perlis.gov.my" class="btn bg-biru text-white">Laman Utama</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Navbar End -->
-
         <!-- home start -->
-        <section class="bg-home bg-kuning d-print-none" id="home">
+        <section class="bg-home bg-biru d-print-none" id="home">
             <div class="home-center">
                 <div class="home-desc-center">
                     <div class="container-fluid">
@@ -103,8 +80,6 @@ if(isset($_POST['payload'])) {
                     $nric = $purifier->purify($_POST['nric']);
                     $telefon = $purifier->purify($_POST['telefon']);
                     $email = $purifier->purify($_POST['email']);
-                    $jenis_pembayaran = $purifier->purify($_POST['jenis_pembayaran']);
-                    $nama_agensi = $purifier->purify($_POST['nama_agensi']);
                     $catatan = $purifier->purify($_POST['catatan']);
                 ?>
 
@@ -137,23 +112,15 @@ if(isset($_POST['payload'])) {
                                                         <li>No. Kad Pengenalan: <?php echo $nric ?? '-' ?></li>
                                                         <li>Telefon: <?php echo $telefon ?? '-' ?></li>
                                                         <li>E-mail: <?php echo $email ?? '-' ?></li>
-                                                        <li>Jenis Pembayaran: <?php echo $jenis_pembayaran ?? '-' ?></li>
-                                                        <li>Agensi: <?php echo $nama_agensi ?? '-' ?></li>
                                                         <li>Catatan: <?php echo $catatan ?? '-' ?></li>
-                                                        <?php if($_POST['alamat'] != NULL): ?>
-                                                        <li>Alamat (Harumanis): <?php echo $_POST['alamat'] ?? '-' ?></li>
-                                                        <?php endif; ?>
-                                                        <?php if($_POST['cukai'] != NULL): ?>
-                                                            <li>No. Cukai Tanah / No. Akaun: <?php echo $_POST['cukai'] ?? '-' ?></li>
-                                                        <?php endif; ?>
                                                     </ul>
                                                 </td>
                                             </tr>
-                                            <?php if($_POST['STATUS'] == 1): $msg = "Pembayaran anda telah diterima. Jika anda mempunyai sebarang pertanyaan, sila hubungi Perbendaharaan Negeri Perlis di ebayar@perlis.gov.my"; ?>
+                                            <?php if($_POST['STATUS'] == 1): $msg = "Pembayaran anda telah diterima."; ?>
                                             <tr>
                                                 <td><div class="alert alert-info"><?php echo $msg ?></div></td>
                                             </tr>
-                                            <?php else: $msg = "Pembayaran anda tidak berjaya. Sila cuba semula. Jika anda mempunyai sebarang pertanyaan, sila hubungi Perbendaharaan Negeri Perlis di ebayar@perlis.gov.my"; ?>
+                                            <?php else: $msg = "Pembayaran anda tidak berjaya. Sila cuba semula."; ?>
                                             <tr>
                                                 <td><div class="alert alert-warning"><?php echo $msg ?></div></td>
                                             </tr>
@@ -188,15 +155,7 @@ if(isset($_POST['payload'])) {
                     <li>No. Kad Pengenalan: ".$_POST['nric']."</li>
                     <li>Telefon: ".$telefon."</li>
                     <li>E-mail: ".$email."</li>
-                    <li>Jenis Pembayaran: ".$jenis_pembayaran."</li>
-                    <li>Agensi: ".$nama_agensi."</li>
                     <li>Catatan: ".$catatan."</li>";
-                    if($_POST['alamat'] != NULL):
-                $receipt .= "<li>Alamat (Harumanis): ".$_POST['alamat']."</li>";
-                    endif;
-                    if($_POST['cukai'] != NULL):
-                $receipt .= "<li>No. Cukai Tanah / No. Akaun: ".$_POST['cukai']."</li>";
-                    endif;
                 $receipt .= "</ul>";
                 
                 $mail = new PHPMailer;
@@ -210,8 +169,7 @@ if(isset($_POST['payload'])) {
                 $mail->setFrom($config['email']['username'], $config['email']['from']);
                 $mail->addReplyTo($config['email']['username'], $config['email']['from']);
                 $mail->addAddress($email, $nama);
-                $mail->addCC($_POST['agency_email']);
-                $mail->Subject = 'Status Pembayaran di E-Bayar Perlis';
+                $mail->Subject = 'Status Pembayaran';
                 $mail->isHTML(true);
                 $mail->Body = $receipt;
                 if (!$mail->send()) {
@@ -234,7 +192,7 @@ if(isset($_POST['payload'])) {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <p class="text-white">&copy; 2021 Hakcipta Terpelihara Perbendaharaan Negeri Perlis</p>
+                            <p class="text-white">&copy; 2021 Hakcipta Terpelihara</p>
                         </div>
                     </div>
                     <!-- end col -->
