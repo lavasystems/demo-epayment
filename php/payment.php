@@ -88,7 +88,7 @@ class Payment
                 'BANK_CODE' => $data['bank_code'],
                 'BE_MESSAGE' => $data['be_message'],
                 'MERCHANT_CODE' => $merchant_code,
-                'CHECKSUM' => $checksum,
+                'CHECKSUM' => trim($checksum),
                 'nama' => $data['nama'],
                 'nric' => $data['nric'],
                 'telefon' => $data['telefon'],
