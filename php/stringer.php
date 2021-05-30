@@ -18,11 +18,11 @@ class StringerController
 
 	public function getChecksum($data)
 	{
-		$data = [
+	    $data = [
 	        'TRANS_ID' => $data['TRANS_ID'],
-	        'MERCHANT_CODE' => $data['MERCHANT_CODE'],
 	        'PAYMENT_MODE' => $data['PAYMENT_MODE'],
-	        'AMOUNT' => $data['AMOUNT']
+	        'AMOUNT' => $data['AMOUNT'],
+		'MERCHANT_CODE' => $data['MERCHANT_CODE']
 	    ];
 
 	    $header = null;
