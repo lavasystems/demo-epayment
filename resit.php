@@ -126,7 +126,7 @@ if(isset($_POST['payload'])) {
                                                 <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
                                             </tr>
                                             <?php endif; ?>
-                                            <?php if($_POST['STATUS'] == 2) : $msg = "Pembayaran anda sedang dikemaskini/perlu pengesahan. Sila semak dengan bank anda."; ?>
+                                            <?php if($_POST['STATUS'] == 3) : $msg = "Pembayaran anda sedang dikemaskini/perlu pengesahan. Sila semak dengan bank anda."; ?>
                                             <tr>
                                                 <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
                                             </tr>
