@@ -196,7 +196,7 @@ if(isset($_POST['payload'])) {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <p class="text-white">&copy; 2021 Hakcipta Terpelihara</p>
+                            <p class="text-white">&copy; 2021 Hakcipta Terpelihara <?php echo $_POST['STATUS'] ?></p>
                         </div>
                     </div>
                     <!-- end col -->
