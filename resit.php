@@ -24,7 +24,7 @@ if(isset($_POST['payload'])) {
         <meta charset="utf-8" />
         <title>Bukti Pembayaran</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Gerbang Pembayaran Perlis" name="description" />
+        <meta content="Gerbang Pembayaran" name="description" />
         <meta content="Fadli Saad" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -51,8 +51,8 @@ if(isset($_POST['payload'])) {
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
                                 <div class="text-center">
-                                    <h2>Bukti Pembayaran</h2>
-                                    <p>Sila semak bukti pembayaran berikut</p>
+                                    <h2 class="text-white">Bukti Pembayaran</h2>
+                                    <p class="text-white">Sila semak bukti pembayaran berikut</p>
                                 </div>
                             </div>
                         </div>

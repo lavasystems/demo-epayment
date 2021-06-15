@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <title>Pengesahan Pembayaran</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Gerbang Pembayaran Perlis" name="description" />
+        <meta content="Gerbang Pembayaran" name="description" />
         <meta content="Fadli Saad" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -32,7 +32,7 @@
                             <div class="col-lg-12">
                                 <div class="text-center">
                                     <h2 class="text-white">Pengesahan Pembayaran</h2>
-                                    <p>Sila semak maklumat pembayaran berikut</p>
+                                    <p class="text-white">Sila semak maklumat pembayaran berikut</p>
                                 </div>
                             </div>
                         </div>
@@ -63,9 +63,11 @@
                                 }
                             }
                             echo "</form>";
+
                             ?>
 
                             <dl class="row">
+
                                 <dt class="col-md-4">Jumlah</dt>
                                 <dd class="col-md-8">RM <?php echo number_format($_POST['amount'],2) ?? '' ?></dd>
 
