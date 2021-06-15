@@ -23,7 +23,7 @@ if($config['fpx']['environment'] == 'Staging'){
         <meta charset="utf-8" />
         <title>E-Payment Demo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Gerbang Pembayaran Perlis" name="description" />
+        <meta content="" name="description" />
         <meta content="Fadli Saad" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -108,7 +108,8 @@ if($config['fpx']['environment'] == 'Staging'){
                         <div class="border p-3 mb-3 rounded">
 
                             <h4>Perbankan Internet dan Kad Kredit/Debit</h4>
-                            <p class="mb-3 pt-1">Pembayaran menggunakan akaun bank anda</p>
+                            <img src="images/fpx.svg" height="64px" class="float-right">
+                            <p class="mb-4 pt-1">Pembayaran menggunakan akaun bank anda</p>
 
                             <div class="alert alert-info">Individu: Minimum RM 1.00 dan maksimum RM 30,000.00<br>Korporat: Minimum RM 2.00 dan maksimum RM 1,000,000.00</div>
 
@@ -146,6 +147,8 @@ if($config['fpx']['environment'] == 'Staging'){
                                 </div>
                             </div>
 
+                            <img src="images/visa.svg" height="64px" class="float-right">
+                            <img src="images/mastercard.svg" height="64px" class="float-right">
                             <p class="mb-3 pt-1">Pembayaran menggunakan kad kredit/debit</p>
                             <div class="row mb-3">
                                 <div class="col-lg-6 col-sm-12">
