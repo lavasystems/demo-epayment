@@ -74,7 +74,8 @@ if($config['fpx']['environment'] == 'Staging'){
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
-                                        <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amaun/jumlah" required="" pattern="[-+]?[0-9]*[.,]?[0-9]+">
+                                        <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amaun/jumlah" required="" pattern="[-+]?[0-9]*[.,]?[0-9]+" id="amount">
+                                        <p id="warning-message" class="text-danger"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama <span class="text-danger">*</span></label>
@@ -200,14 +201,46 @@ if($config['fpx']['environment'] == 'Staging'){
         <script src="js/app.js"></script>
         <script>
 
+            var minAmount = 1;
+            var maxAmount = 30000;
+
+            $('#amount').attr('min', minAmount);
+            $('#amount').attr('max', maxAmount);
+
+            $('#amount').on('keydown keyup change', function(){
+                var char = $(this).val();
+                if(char < minAmount){
+                    $('#warning-message').text('Jumlah minimum adalah RM '+minAmount+'');
+                }else if(char > maxAmount){
+                    $('#warning-message').text('Jumlah maksimum adalah RM '+maxAmount+'');
+                    $(this).val(char.substring(0, maxAmount));
+                }else{
+                    $('#warning-message').text('');
+                }
+            });
+
             $('#fpx').on('change', function() {
+
                 var mode = "01";
+                minAmount = 1;
+                maxAmount = 30000;
+
+                $('#amount').attr('min', minAmount);
+                $('#amount').attr('max', maxAmount);
+
                 $('#bank_code').empty();
                 get_list(mode);
             });
 
             $('#fpx1').on('change', function() {
+
                 var mode = "02";
+                minAmount = 2;
+                maxAmount = 1000000;
+
+                $('#amount').attr('min', minAmount);
+                $('#amount').attr('max', maxAmount);
+
                 $('#bank_code').empty();
                 get_list(mode);
             });
