@@ -116,7 +116,7 @@ class FPX
 					$bank_list[$key] = $key.$value;
 			}
 
-			asort($bank_list);
+			natcasesort($bank_list);
 
 			# store bank list for drop down select
 			file_put_contents($file, json_encode($bank_list));
