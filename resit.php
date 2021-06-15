@@ -120,9 +120,13 @@ if(isset($_POST['payload'])) {
                                             <tr>
                                                 <td><div class="alert alert-info"><?php echo $msg ?></div></td>
                                             </tr>
-                                            <?php else: $msg = "Pembayaran anda tidak berjaya. Sila cuba semula."; ?>
+                                            <?php else if($_POST['STATUS'] == 0): $msg = "Pembayaran anda tidak berjaya. Sila cuba semula."; ?>
                                             <tr>
-                                                <td><div class="alert alert-warning"><?php echo $msg ?></div></td>
+                                                <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
+                                            </tr>
+                                            <?php else : $msg = "Pembayaran anda sedang dikemaskini/perlu pengesahan. Sila semak dengan bank anda."; ?>
+                                            <tr>
+                                                <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
                                             </tr>
                                             <?php endif; ?>
                                             <tr>
