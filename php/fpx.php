@@ -50,7 +50,7 @@ class FPX
 			
 			// temporary to get BC message. Plese remove once in production
 			$bc_file = ROOT_DIR.'/fpx/bc_message.txt';
-			file_put_contents($token);
+			file_put_contents($bc_file, $token);
 
 			$fpx_msgToken = reset($response_value);
 
