@@ -47,6 +47,10 @@ class FPX
 				$response_value[$key] = $value;
 				$token = strtok("&");
 			}
+			
+			// temporary to get BC message. Plese remove once in production
+			$bc_file = ROOT_DIR.'/fpx/bc_message.txt';
+			file_put_contents($token);
 
 			$fpx_msgToken = reset($response_value);
 
