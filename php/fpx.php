@@ -67,8 +67,10 @@ class FPX
 
 			if ($mode == '01'){
 				$cimb = 'CIMB Clicks';
+				$rakyat = 'Bank Rakyat';
 			} else {
 				$cimb = 'CIMB Bank';
+				$rakyat = 'i-bizRAKYAT';
 			}
 
 			$bank_name = [
@@ -86,8 +88,7 @@ class FPX
 				'AMBB0208' => 'AmBank',
 				'AMBB0209' => 'AmBank',
 				'BIMB0340' => 'Bank Islam',
-				'BKRM0602' => 'Bank Rakyat',
-				'BKRM0602' => 'i-bizRAKYAT',
+				'BKRM0602' => $rakyat,
 				'BMMB0341' => 'Bank Muamalat',
 				'BMMB0342' => 'Bank Muamalat',
 				'BNP003' => 'BNP Paribas',
@@ -103,7 +104,7 @@ class FPX
 				'MBB0228' => 'Maybank2E',
 				'OCBC0229' => 'OCBC Bank',
 				'PBB0233' => 'Public Bank',
-				'PBB0234' => 'PB Enterprise',
+				'PBB0234' => 'Public Bank Enterprise',
 				'RHB0218' => 'RHB Bank',
 				'SCB0215' => 'Standard Chartered',
 				'SCB0216' => 'Standard Chartered',
