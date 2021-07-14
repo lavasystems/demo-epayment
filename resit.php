@@ -68,6 +68,7 @@ if(isset($_POST['payload'])) {
 
                 <?php if(isset($_POST['TRANS_ID']) && isset($_POST['PAYMENT_DATETIME']) && isset($_POST['AMOUNT']) && isset($_POST['PAYMENT_TRANS_ID'])):
                     $trans_id = $purifier->purify($_POST['TRANS_ID']);
+                    $merchant_order_no = $purifier->purify($_POST['MERCHANT_ORDER_NO']);
                     $receipt_no = $purifier->purify($_POST['RECEIPT_NO']);
                     $payment_datetime = $purifier->purify($_POST['PAYMENT_DATETIME']);
                     $amount = $purifier->purify($_POST['AMOUNT']);
@@ -101,6 +102,7 @@ if(isset($_POST['payload'])) {
                                                     <ul>
                                                         <li>No. Resit: <?php echo $receipt_no ?? '-' ?></li>
                                                         <li>ID Transaksi: <?php echo $trans_id ?? '-' ?></li>
+                                                        <li>Seller Order No: <?php echo $merchant_order_no ?? '-' ?></li>
                                                         <li>Tarikh/Masa: <?php echo $payment_datetime ?? '-' ?></li>
                                                         <li>Jumlah: RM <?php echo $amount ?? '-' ?></li>
                                                         <li>Mod Pembayaran: <?php echo strtoupper($payment_mode) ?? '-' ?></li>
@@ -150,6 +152,7 @@ if(isset($_POST['payload'])) {
                 $receipt = "<p>".$msg."</p><ul>
                     <li>No. Resit: ".$receipt_no."</li>
                     <li>ID Transaksi: ".$trans_id."</li>
+                    <li>Seller Order No: ".$merchant_order_no."</li>
                     <li>Tarikh/Masa: ".$payment_datetime."</li>
                     <li>Jumlah: RM ".$amount."</li>
                     <li>Mod Pembayaran: ".strtoupper($payment_mode)."</li>
