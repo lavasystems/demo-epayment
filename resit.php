@@ -97,11 +97,27 @@ if(isset($_POST['payload'])) {
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php if($_POST['STATUS'] == 1): $msg = "Pembayaran anda telah diterima."; $status = 'SUCCESS'; ?>
+                                            <tr>
+                                                <td><div class="alert alert-info"><?php echo $msg ?></div></td>
+                                            </tr>
+                                            <?php endif; ?>
+                                            <?php if($_POST['STATUS'] == 0): $msg = "Pembayaran anda tidak berjaya. Sila cuba semula."; $status = 'FAILED'; ?>
+                                            <tr>
+                                                <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
+                                            </tr>
+                                            <?php endif; ?>
+                                            <?php if($_POST['STATUS'] == 3) : $msg = "Pembayaran anda sedang dikemaskini/perlu pengesahan. Sila semak dengan bank anda."; $status = 'PENDING APPROVAL'; ?>
+                                            <tr>
+                                                <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
+                                            </tr>
+                                            <?php endif; ?>
                                             <tr>
                                                 <td>
                                                     <ul>
                                                         <li>No. Resit: <?php echo $receipt_no ?? '-' ?></li>
                                                         <li>ID Transaksi: <?php echo $trans_id ?? '-' ?></li>
+                                                        <li>Status: <?php echo $status ?? '-' ?></li>
                                                         <li>Seller Order No: <?php echo $merchant_order_no ?? '-' ?></li>
                                                         <li>Tarikh/Masa: <?php echo $payment_datetime ?? '-' ?></li>
                                                         <li>Jumlah: RM <?php echo $amount ?? '-' ?></li>
@@ -118,21 +134,6 @@ if(isset($_POST['payload'])) {
                                                     </ul>
                                                 </td>
                                             </tr>
-                                            <?php if($_POST['STATUS'] == 1): $msg = "Pembayaran anda telah diterima."; ?>
-                                            <tr>
-                                                <td><div class="alert alert-info"><?php echo $msg ?></div></td>
-                                            </tr>
-                                            <?php endif; ?>
-                                            <?php if($_POST['STATUS'] == 0): $msg = "Pembayaran anda tidak berjaya. Sila cuba semula."; ?>
-                                            <tr>
-                                                <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
-                                            </tr>
-                                            <?php endif; ?>
-                                            <?php if($_POST['STATUS'] == 3) : $msg = "Pembayaran anda sedang dikemaskini/perlu pengesahan. Sila semak dengan bank anda."; ?>
-                                            <tr>
-                                                <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
-                                            </tr>
-                                            <?php endif; ?>
                                             <tr>
                                                 <td>
                                                     <a href="javascript:window.print()" class="btn bg-biru text-white d-print-none"><i class="fa fa-print"></i> Cetak</a>
