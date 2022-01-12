@@ -76,6 +76,8 @@ if($config['fpx']['environment'] == 'Staging'){
                                         <label for="merchant">Merchant <span class="text-danger">*</span></label>
                                         <select name="merchant" id="merchant" class="custom-select" required>
                                             <option value="">- Pilih Merchant -</option>
+                                            <option value="pearl">Mutiara Technology Sdn Bhd</option>
+                                            <option value="assofa">Yayasan Sofa Negeri Sembilan</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -268,23 +270,7 @@ if($config['fpx']['environment'] == 'Staging'){
                     }
                 });
             }
-            
-            function getMerchant(){
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: "php/merchant.php",
-                    success: function(response) {
-                        $.each(response.merchant, function(key,value){
-                            $('#merchant').append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-                    }
-                });
-            }
-            
-            $(document).ready(function(){
-                getMerchant();
-            });
+           
         </script>
     </body>
 
