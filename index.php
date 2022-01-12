@@ -73,6 +73,12 @@ if($config['fpx']['environment'] == 'Staging'){
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="form-group">
+                                        <label for="merchant">Merchant <span class="text-danger">*</span></label>
+                                        <select name="merchant" id="merchant" class="custom-select" required>
+                                            <option value="">- Pilih Merchant -</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="amount">Jumlah (RM) <span class="text-danger">*</span></label>
                                         <input type="number" min="1.00" step="0.01" class="form-control" name="amount" placeholder="Amaun/jumlah" required="" pattern="[-+]?[0-9]*[.,]?[0-9]+" id="amount">
                                         <p id="warning-message" class="text-danger"></p>
@@ -262,6 +268,23 @@ if($config['fpx']['environment'] == 'Staging'){
                     }
                 });
             }
+            
+            function getMerchant(){
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "php/merchant.php",
+                    success: function(response) {
+                        $.each(response.merchant, function(key,value){
+                            $('#merchant').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                });
+            }
+            
+            $(document).ready(function(){
+                getMerchant();
+            });
         </script>
     </body>
 
