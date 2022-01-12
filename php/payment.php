@@ -22,7 +22,8 @@ class Payment
 
         if(isset($data)){
 
-            $merchant_code = $this->config['fpx']['merchant-code'];
+            //$merchant_code = $this->config['fpx']['merchant-code'];
+            $merchant_code = $data['merchant'];
             $payment_mode = $data['payment_mode'];
 
             if($payment_mode == 'fpx' || $payment_mode == 'fpx1'){
