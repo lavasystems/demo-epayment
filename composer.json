@@ -1,7 +1,8 @@
 {
 "name":"fadlisaad/fpx", 
 "description":"Proof of concept for using FPX Malaysia payment gateway",
-    "require": {
+ "license": "MIT",  
+ "require": {
         "phpmailer/phpmailer": "^6.2",
         "ezyang/htmlpurifier": "^4.13"
     }
