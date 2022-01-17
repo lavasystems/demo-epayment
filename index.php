@@ -76,8 +76,8 @@ if($config['fpx']['environment'] == 'Staging'){
                                         <label for="merchant">Merchant <span class="text-danger">*</span></label>
                                         <select name="merchant" id="merchant" class="custom-select" required>
                                             <option value="">- Pilih Merchant -</option>
-                                            <option value="demo-pearl">Mutiara Technology Sdn Bhd</option>
-                                            <option value="demo-sofa">Yayasan Sofa Negeri Sembilan</option>
+                                            <option value="pearl">Mutiara Technology Sdn Bhd</option>
+                                            <option value="assofa">Yayasan Sofa Negeri Sembilan</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
