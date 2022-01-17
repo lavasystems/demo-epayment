@@ -18,7 +18,8 @@ class Payment
     # process online payment
     public function process($data)
     {
-        require ('conn.php');
+        #require ('conn.php');
+        require ('conn-sqlite.php');
 
         if(isset($data)){
 
@@ -114,7 +115,8 @@ class Payment
 
     public function response()
     {
-        require ('conn.php');
+        #require ('conn.php');
+        require ('conn-sqlite.php');
 
         $input = $_POST;
 

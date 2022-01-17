@@ -51,7 +51,8 @@
                         <div class="border p-3 mb-3 rounded">
                             <h4>Pengesahan</h4>
                             <?php
-                            require ('php/conn.php');
+                            #require ('conn.php');
+                            require ('php/conn-sqlite.php');
 
                             $data = $_POST;
 
