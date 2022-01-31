@@ -1,9 +1,4 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] != "POST") {
-    header("HTTP/1.0 403 Forbidden");
-    print("Forbidden");
-    exit();
-}
 $config_filename = 'config.json';
 if (!file_exists($config_filename)) {
     throw new Exception("Can't find ".$config_filename);
@@ -14,9 +9,6 @@ require 'vendor/autoload.php';
 //send email
 use PHPMailer\PHPMailer\PHPMailer;
 $purifier = new HTMLPurifier();
-
-if(isset($_POST['payload'])) {
-    if($_POST['payload'] == 'ZWI0eUFy') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -229,11 +221,3 @@ if(isset($_POST['payload'])) {
         <script src="js/app.js"></script>
     </body>
 </html>
-<?php
-    } else {
-        die('Go away you nasty bot!');
-    }
-} else {
-    die('No valid post data received');
-}
-?>
