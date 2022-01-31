@@ -112,7 +112,7 @@ if(isset($_POST['payload'])) {
                                                 <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
                                             </tr>
                                             <?php endif; ?>
-                                            <?php if($_POST['STATUS'] == 2) : $msg = "Pembayaran anda tidak berjaya. Sila semak baki anda"; $status= $_POST['STATUS_MESSAGE']; ?>
+                                            <?php if($_POST['STATUS'] == 2) : $msg = "Pembayaran anda tidak berjaya. Sila semak baki anda"; ?>
                                             <tr>
                                                 <td><div class="alert alert-danger"><?php echo $msg ?></div></td>
                                             </tr>
