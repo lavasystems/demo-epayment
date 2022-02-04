@@ -121,9 +121,9 @@ class Payment
         $input = $_POST;
 
         $fpx_data = [
-            'status' => $_POST['STATUS'],
-            'status_code' => $_POST['STATUS_CODE'],
-            'status_message' => $_POST['STATUS_MESSAGE'],
+            'status' => isset($_POST['STATUS']) ? $_POST['STATUS'] : NULL,
+            'status_code' => isset($_POST['STATUS_CODE']) ? $_POST['STATUS_CODE'] : NULL,
+            'status_message' => isset($_POST['STATUS_MESSAGE']) ? $_POST['STATUS_MESSAGE'] : NULL,
             'payment_datetime' => $_POST['PAYMENT_DATETIME'],
             'payment_mode' => $_POST['PAYMENT_MODE'],
             'amount' => $_POST['AMOUNT'],
