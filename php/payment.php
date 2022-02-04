@@ -18,8 +18,7 @@ class Payment
     # process online payment
     public function process($data)
     {
-        #require ('conn.php');
-        require ('conn-sqlite.php');
+        require ('conn.php');
 
         if(isset($data)){
 
