@@ -199,7 +199,7 @@ $purifier = new HTMLPurifier();
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <p class="text-white">&copy; 2021 Hakcipta Terpelihara <?php echo $_POST['STATUS'] ?></p>
+                            <p class="text-white">&copy; 2021-2022 Hakcipta Terpelihara</p>
                         </div>
                     </div>
                     <!-- end col -->
