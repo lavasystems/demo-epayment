@@ -114,8 +114,7 @@ class Payment
 
     public function response()
     {
-        #require ('conn.php');
-        require ('conn-sqlite.php');
+        require ('conn.php');
 
         $input = $_POST;
 

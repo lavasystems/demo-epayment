@@ -51,8 +51,6 @@
                         <div class="border p-3 mb-3 rounded">
                             <h4>Pengesahan</h4>
                             <?php
-                            require ('conn.php');
-
                             $data = $_POST;
 
                             echo "<form id='confirm' action='action.php?id=process-payment' method='post'>";
