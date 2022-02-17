@@ -42,7 +42,6 @@ class StringerController
 	        $body = curl_error($ch);
 	        // HostNotFound, No route to Host, etc  Network related error
 	        $http_status = -1;
-	        Log::error("CURL Error: = " . $body);
 	    } else {
 	       //parsing http status code
 	        $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
