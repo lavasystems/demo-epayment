@@ -179,12 +179,12 @@ $purifier = new HTMLPurifier();
                 $mail->Subject = 'Status Pembayaran';
                 $mail->isHTML(true);
                 $mail->Body = $receipt;
-                if (!$mail->send()) {
+                /* if (!$mail->send()) {
                     echo "<script>alert('Terdapat ralat dalam menghantar bukti pembayaran ini. Sila semak jika anda memasukkan alamat e-mail dengan tepat.');</script>";
                     echo $mail->ErrorInfo;
                 } else {
                     echo "<script>alert('Sila semak e-mail anda untuk mendapatkan salinan bukti pembayaran ini.');</script>";
-                }
+                } */
             else:
                 echo "<div class='alert alert-danger'>No data received</div>";
             endif;
