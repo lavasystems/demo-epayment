@@ -78,6 +78,9 @@ if($config['fpx']['environment'] == 'Staging'){
                                             <option value="">- Pilih Merchant -</option>
                                             <option value="pearl">Mutiara Technology Sdn Bhd</option>
                                             <option value="assofa">Yayasan Sofa Negeri Sembilan</option>
+                                            <option value="WEBAFF">Mutiara Technology Sdn Bhd - Affin</option>
+                                            <option value="amanpalestine">Aman Palestin Berhad</option>
+                                            <option value="aldzikr">AL DZIKR ILM</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
