@@ -81,6 +81,7 @@ if($config['fpx']['environment'] == 'Staging'){
                                             <option value="WEBAFF">Mutiara Technology Sdn Bhd - Affin</option>
                                             <option value="amanpalestine">Aman Palestin Berhad</option>
                                             <option value="aldzikr">AL DZIKR ILM</option>
+<option value="mvm">Muslim Volunteer Malaysia</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
